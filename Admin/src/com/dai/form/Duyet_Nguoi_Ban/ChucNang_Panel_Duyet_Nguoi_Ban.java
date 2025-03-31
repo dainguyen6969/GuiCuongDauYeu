@@ -20,16 +20,18 @@ public class ChucNang_Panel_Duyet_Nguoi_Ban {
     static String url = "jdbc:mysql://localhost:3306/DATN";
     static String user = "root";
     static String password = "";
-    static String readAllDB = "SELECT dnm.ID_Duyet_Nguoi_Mua, dnm.ID_Nguoi_Mua, dnm.Ten_Shop, nm.Email, nm.So_Dien_Thoai, dnm.Trang_Thai, dnm.Dia_Chi_Lay_Hang "
+    static String readAllDB = "SELECT dnm.ID_Duyet_Nguoi_Mua, dnm.ID_Nguoi_Mua, dnm.Ten_Shop, nm.Email, nm.So_Dien_Thoai, dnm.Trang_Thai, dnm.Dia_Chi_Lay_Hang, dnm.CCCD, dnm.Ngay_Gui_Duyet "
             + "FROM Duyet_Nguoi_Mua dnm INNER JOIN Người_Mua nm "
-            + "ON dnm.ID_Duyet_Nguoi_Mua = nm.ID_Nguoi_Mua";
+            + "ON dnm.ID_Nguoi_Mua = nm.ID_Nguoi_Mua";
 
-    static String duyetNguoiMua = "INSERT INTO Nguoi_Ban(ID_Nguoi_Mua, Ten_Cua_Hang, Dia_Chi, So_Dien_Thoai, Trang_Thai, Role, Email)"
-            + "VALUES(?, ?, ?, ?, ?, ?, ?)";
+    static String duyetNguoiMua = "INSERT INTO Nguoi_Ban(ID_Nguoi_Mua, Ten_Cua_Hang, Dia_Chi, So_Dien_Thoai, Trang_Thai, Role, Email, CCCD)"
+            + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
-    static String readAllDB2 = "SELECT dnm.ID_Nguoi_Mua, dnm.Ten_Shop, nm.Email, nm.So_Dien_Thoai, dnm.Trang_Thai, dnm.Dia_Chi_Lay_Hang "
+    static String readDuyetNguoiBan = "SELECT dnm.ID_Duyet_Nguoi_Mua, dnm.ID_Nguoi_Mua, dnm.Ten_Shop, nm.Email, nm.So_Dien_Thoai, dnm.Trang_Thai, dnm.Dia_Chi_Lay_Hang, dnm.CCCD, dnm.Ngay_Gui_Duyet "
             + "FROM Duyet_Nguoi_Mua dnm INNER JOIN Người_Mua nm "
-            + "ON dnm.ID_Duyet_Nguoi_Mua = nm.ID_Nguoi_Mua WHERE dnm.ID_Nguoi_Mua = ?";
+            + "ON dnm.ID_Nguoi_Mua = nm.ID_Nguoi_Mua WHERE dnm.ID_Nguoi_Mua = ?";
+
+    static String readDB = "SELECT * FROM Duyet_Nguoi_Mua";
 
     public static ArrayList<model_Duyet_Nguoi_Ban> getAll() {
         ArrayList<model_Duyet_Nguoi_Ban> MDNB = new ArrayList<>();
@@ -44,6 +46,8 @@ public class ChucNang_Panel_Duyet_Nguoi_Ban {
                 dnb.setSo_Dien_Thoai(rs.getString("So_Dien_Thoai"));
                 dnb.setTrang_Thai(rs.getString("Trang_Thai"));
                 dnb.setDia_Chi_Lay_Hang(rs.getString("Dia_Chi_Lay_Hang"));
+                dnb.setCccd(rs.getString("CCCD"));
+                dnb.setNgay_Gui_Duyet(rs.getString("Ngay_Gui_Duyet"));
                 MDNB.add(dnb);
             }
         } catch (Exception e) {
@@ -52,7 +56,7 @@ public class ChucNang_Panel_Duyet_Nguoi_Ban {
         return MDNB;
     }
 
-    public static boolean duyet_Nguoi_Ban(String idNguoiMua, String tenCuaHang, String diaChi, String soDienThoai, String email) {
+    public static boolean duyet_Nguoi_Ban(String idNguoiMua, String tenCuaHang, String diaChi, String soDienThoai, String email, String cccd) {
 
         try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(duyetNguoiMua)) {
             stmt.setString(1, idNguoiMua);
@@ -62,6 +66,7 @@ public class ChucNang_Panel_Duyet_Nguoi_Ban {
             stmt.setString(5, "Hoạt động");
             stmt.setString(6, "3");
             stmt.setString(7, email);
+            stmt.setString(8, cccd);
 
             int row = stmt.executeUpdate();
 
@@ -79,22 +84,44 @@ public class ChucNang_Panel_Duyet_Nguoi_Ban {
 
     public static model_Duyet_Nguoi_Ban getDuyetNguoiBan(String ma_Nguoi_Mua) {
         model_Duyet_Nguoi_Ban dnb = null;
-        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readAllDB2)) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readDuyetNguoiBan)) {
             stmt.setString(1, ma_Nguoi_Mua);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 dnb = new model_Duyet_Nguoi_Ban();
+                dnb.setID_Duyet_Nguoi_Ban(rs.getString("ID_Duyet_Nguoi_Mua"));
                 dnb.setID_Nguoi_Mua(rs.getString("ID_Nguoi_Mua"));
                 dnb.setTen_Shop(rs.getString("Ten_Shop"));
                 dnb.setEmail(rs.getString("Email"));
                 dnb.setSo_Dien_Thoai(rs.getString("So_Dien_Thoai"));
                 dnb.setTrang_Thai(rs.getString("Trang_Thai"));
                 dnb.setDia_Chi_Lay_Hang(rs.getString("Dia_Chi_Lay_Hang"));
+                dnb.setCccd(rs.getString("CCCD"));
+                dnb.setNgay_Gui_Duyet(rs.getString("Ngay_Gui_Duyet"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return dnb;
+    }
+
+    public static ArrayList<model_Duyet_Nguoi_Ban> getAll2() {
+        ArrayList<model_Duyet_Nguoi_Ban> MDNB = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readDB)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                model_Duyet_Nguoi_Ban dnb = new model_Duyet_Nguoi_Ban();
+                dnb.setID_Duyet_Nguoi_Ban(rs.getString("ID_Duyet_Nguoi_Mua"));
+                dnb.setID_Nguoi_Mua(rs.getString("ID_Nguoi_Mua"));
+                dnb.setTen_Shop(rs.getString("Ten_Shop"));
+                dnb.setTrang_Thai(rs.getString("Trang_Thai"));
+                dnb.setCccd(rs.getString("CCCD"));
+                MDNB.add(dnb);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return MDNB;
     }
 }

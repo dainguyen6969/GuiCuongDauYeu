@@ -315,9 +315,9 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
     private void tbl_Nguoi_BanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_Nguoi_BanMouseClicked
         // TODO add your handling code here:
         int selected = tbl_Nguoi_Ban.getSelectedRow();
-        String ma_Khach_hang = tbl_Nguoi_Ban.getValueAt(selected, 1).toString();
-        Form_ChiTiet_KhachHang form_CT_KH = new Form_ChiTiet_KhachHang(ma_Khach_hang);
-        form_CT_KH.setVisible(true);
+        String ma_Nguoi_Ban = tbl_Nguoi_Ban.getValueAt(selected, 1).toString();
+        Form_ChiTiet_Nguoi_Ban form_CT_NB = new Form_ChiTiet_Nguoi_Ban(ma_Nguoi_Ban);
+        form_CT_NB.setVisible(true);
 
     }//GEN-LAST:event_tbl_Nguoi_BanMouseClicked
 

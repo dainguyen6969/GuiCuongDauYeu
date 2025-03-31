@@ -9,6 +9,7 @@ import com.dai.component.header;
 import com.dai.event.EventMenuSelected;
 import com.dai.event.EventShowPopupMenu;
 import com.dai.form.Duyet_Nguoi_Ban.Panel_Duyet_Nguoi_Ban;
+import com.dai.form.Duyet_Nguoi_Ban.Panel_Duyet_Nguoi_Ban1;
 import com.dai.form.Form1;
 import com.dai.form.Form_Home;
 import com.dai.form.Form_QuanLiGiangVien;
@@ -16,6 +17,7 @@ import com.dai.form.MainForm;
 import com.dai.form.Quan_Ly_User.Panel_KhachHang;
 import com.dai.form.Quan_Ly_User.Panel_NguoiBan;
 import com.dai.form.Quan_Ly_Danh_Muc.Panel_DanhMuc;
+import com.dai.form.Quan_Ly_Danh_Muc.Panel_Them_Danh_Muc;
 import com.dai.swing.MenuItem;
 import com.dai.swing.MenuPopup;
 import com.dai.swing.icon.GoogleMaterialDesignIcons;
@@ -65,9 +67,14 @@ public class Main extends javax.swing.JFrame {
             public void menuSelected(int menuIndex, int subMenuIndex) {
                 System.out.println("Menu index: " + menuIndex + " SubMenu Index " + subMenuIndex);
                 if (menuIndex == 0) {
-                    form.showForm(new Panel_Duyet_Nguoi_Ban());
-                }else if (menuIndex == 1) {
+                    form.showForm(new Panel_Duyet_Nguoi_Ban1());
+                } else if (menuIndex == 1) {
                     form.showForm(new Panel_DanhMuc());
+                    if (subMenuIndex == 0) {
+                        form.showForm(new Panel_DanhMuc());
+                    } else if (subMenuIndex == 1) {
+                        form.showForm(new Panel_Them_Danh_Muc());
+                    }
                 } else if (menuIndex == 2) {
                     form.showForm(new Panel_KhachHang());
                     if (subMenuIndex == 0) {
@@ -75,7 +82,7 @@ public class Main extends javax.swing.JFrame {
                     } else if (subMenuIndex == 1) {
                         form.showForm(new Panel_NguoiBan());
                     }
-                } 
+                }
             }
         });
 

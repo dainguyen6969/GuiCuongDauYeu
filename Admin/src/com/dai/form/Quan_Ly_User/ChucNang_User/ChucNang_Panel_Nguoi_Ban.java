@@ -86,29 +86,28 @@ public class ChucNang_Panel_Nguoi_Ban {
         return mNB;
     }
 
-    public static Model_Khach_Hang getNguoiBan(String ma_Nguoi_Ban) {
-        Model_Khach_Hang kh = null;
+    public static Model_Nguoi_Ban getNguoiBan(String ma_Nguoi_Ban) {
+        Model_Nguoi_Ban nb = null;
         try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readNguoiBan);) {
             stmt.setString(1, ma_Nguoi_Ban);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                kh = new Model_Khach_Hang();
-                kh.setHo_Ten(rs.getString("Ho_Ten"));
-                kh.setMa_Khach_Hang(rs.getString("ID_Nguoi_Mua"));
-                kh.setSo_Dien_Thoai(rs.getString("So_Dien_Thoai"));
-                kh.setTrang_Thai(rs.getString("Trang_Thai"));
-                kh.setSo_Dien_Thoai(rs.getString("So_Dien_Thoai"));
-                kh.setEmail(rs.getString("Email"));
-                kh.setGioi_Tinh(rs.getString("Gioi_Tinh"));
-                kh.setNgay_Sinh(rs.getString("Ngay_Sinh"));
-                kh.setDia_Chi(rs.getString("Dia_Chi"));
-                kh.setNgay_Tao(rs.getString("Ngay_Tao"));
+                nb = new Model_Nguoi_Ban();
+                nb.setID_Nguoi_Ban(rs.getString("ID_Nguoi_Ban"));
+                nb.setID_Nguoi_Mua(rs.getString("ID_Nguoi_Mua"));
+                nb.setTen_Cua_Hang(rs.getString("Ten_Cua_Hang"));
+                nb.setSo_Dien_Thoai(rs.getString("So_Dien_Thoai"));
+                nb.setDia_Chi(rs.getString("Dia_Chi"));
+                nb.setEmail(rs.getString("Email"));
+                nb.setNgay_Tham_Gia(rs.getString("Ngay_Tham_Gia"));
+                nb.setTrang_Thai(rs.getString("Trang_Thai"));
+                nb.setCccd(rs.getString("CCCD"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return kh;
+        return nb;
     }
 
     public static ArrayList<Model_Nguoi_Ban> getTimKiem(String ma_Nguoi_Ban) {

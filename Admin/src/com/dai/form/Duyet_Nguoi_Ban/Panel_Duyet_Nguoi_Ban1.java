@@ -16,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dainguyen
  */
-public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
+public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
 
     /**
      * Creates new form Panel_KhachHang
      */
     EventActionDuyetNguoiBan evenActionDuyetNguoiBan;
 
-    public Panel_Duyet_Nguoi_Ban() {
+    public Panel_Duyet_Nguoi_Ban1() {
         initComponents();
         tbl_Duyet_Nguoi_Ban.fixTable(jScrollPane2);
         setOpaque(false);
@@ -40,8 +40,8 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
                         duyetNguoiBan.getTen_Shop(),
                         duyetNguoiBan.getDia_Chi_Lay_Hang(),
                         duyetNguoiBan.getSo_Dien_Thoai(),
-                        duyetNguoiBan.getEmail());
-                //duyetNguoiBan.getCccd());
+                        duyetNguoiBan.getEmail(),
+                        duyetNguoiBan.getCccd());
             }
 
             @Override
@@ -55,13 +55,13 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
     public void fillTableData(ArrayList<model_Duyet_Nguoi_Ban> dnb) {
         DefaultTableModel model = (DefaultTableModel) tbl_Duyet_Nguoi_Ban.getModel();
         model.setRowCount(0);
-//        for (model_Duyet_Nguoi_Ban duyet_Nguoi_Ban : dnb) {
-//            model.addRow(new model_Duyet_Nguoi_Ban(duyet_Nguoi_Ban.getID_Nguoi_Mua(), duyet_Nguoi_Ban.getTen_Shop(), duyet_Nguoi_Ban.getDia_Chi_Lay_Hang(), duyet_Nguoi_Ban.getID_Duyet_Nguoi_Ban(), duyet_Nguoi_Ban.getCccd(), duyet_Nguoi_Ban.getSo_Dien_Thoai(), duyet_Nguoi_Ban.getEmail(), duyet_Nguoi_Ban.getTrang_Thai()).toRowTable(evenActionDuyetNguoiBan));
-//        }
-
         for (model_Duyet_Nguoi_Ban duyet_Nguoi_Ban : dnb) {
-            model.addRow(duyet_Nguoi_Ban.toRowTable(evenActionDuyetNguoiBan));
+            model.addRow(new model_Duyet_Nguoi_Ban(duyet_Nguoi_Ban.getID_Nguoi_Mua(), duyet_Nguoi_Ban.getTen_Shop(), duyet_Nguoi_Ban.getDia_Chi_Lay_Hang(), duyet_Nguoi_Ban.getID_Duyet_Nguoi_Ban(), duyet_Nguoi_Ban.getCccd(), duyet_Nguoi_Ban.getSo_Dien_Thoai(), duyet_Nguoi_Ban.getEmail(), duyet_Nguoi_Ban.getTrang_Thai()).toRowTable(evenActionDuyetNguoiBan));
         }
+
+//        for (model_Duyet_Nguoi_Ban duyet_Nguoi_Ban : dnb) {
+//            model.addRow(duyet_Nguoi_Ban.toRowTable(evenActionDuyetNguoiBan));
+//        }
     }
 
     private boolean showMessage(String message) {
@@ -127,7 +127,7 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
