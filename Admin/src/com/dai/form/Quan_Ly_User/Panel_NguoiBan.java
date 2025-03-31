@@ -5,22 +5,14 @@
 package com.dai.form.Quan_Ly_User;
 
 import com.dai.dialog.Message;
-import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
 import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Nguoi_Ban;
 import com.dai.form.Test;
-import com.dai.main.Main;
-import com.dai.model.ModelStudent;
-import com.dai.model.Model_Khach_Hang;
+import com.dai.main.MainAdmin;
 import com.dai.model.Model_Nguoi_Ban;
-import com.dai.swing.table.EventAction.EventAction;
 import com.dai.swing.table.EventAction.EventActionNguoiBan;
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
-import com.dai.swing.table.EventAction.EventActionNguoiMua;
 
 /**
  *
@@ -66,7 +58,7 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
     }
 
     private boolean showMessage(String message) {
-        Message obj = new Message(Main.getFrames()[0], true);
+        Message obj = new Message(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }

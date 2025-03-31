@@ -5,7 +5,7 @@
 package com.dai.form.Duyet_Nguoi_Ban;
 
 import com.dai.dialog.Message;
-import com.dai.main.Main;
+import com.dai.main.MainAdmin;
 import com.dai.model.model_Duyet_Nguoi_Ban;
 import com.dai.swing.table.EventAction.EventActionDuyetNguoiBan;
 import java.awt.Color;
@@ -65,7 +65,7 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
     }
 
     private boolean showMessage(String message) {
-        Message obj = new Message(Main.getFrames()[0], true);
+        Message obj = new Message(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }
@@ -135,7 +135,7 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("Người mua");
+        jLabel1.setText("Duyệt người bán");
 
         lbl_VutGay.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lbl_VutGay.setText("Vụt gậy");

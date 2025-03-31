@@ -4,8 +4,6 @@
  */
 package com.dai.form.Quan_Ly_User.ChucNang_User;
 
-import com.dai.model.ModelGiangVien;
-import com.dai.model.Model_Khach_Hang;
 import com.dai.model.Model_Nguoi_Ban;
 import java.sql.Connection;
 import java.sql.DriverManager;

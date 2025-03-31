@@ -193,7 +193,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ng&#x1b0;&#x1edd;i mua"/>
+            <Property name="text" type="java.lang.String" value="Duy&#x1ec7;t ng&#x1b0;&#x1edd;i b&#xe1;n"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_VutGay">

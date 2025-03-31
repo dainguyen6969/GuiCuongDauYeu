@@ -15,10 +15,8 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/event/EventMenuSelected.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/event/EventMenu.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/event/EventShowPopupMenu.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/ChucNang/ChucNangForm_QuanLiGiangVien.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/Menu.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/Main.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Form_QuanLiGiangVien.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/MainAdmin.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Form1.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/header.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/Profile.java</file>
@@ -36,9 +34,7 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/icon/group.png</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/icon/edit.png</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/icon/categories.png</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/model/ModelGiangVien.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/model/ModelMenu.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/model/ModelStudent.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/model/ModelCard.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/Card.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/ButtonBadges.java</file>
@@ -50,7 +46,6 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/PanelPopup.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/ProgressBarCustom.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/Button.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Form_Home.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/EventAction/EventAction.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/ModelAction.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/icon/DefaultIconCode.java</file>
@@ -63,7 +58,6 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/Profile.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/TableCellAction.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/TableHeader.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/MainForm.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/dialog/Message.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/ModelProfile.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/noticeboard/NoticeBoard.java</file>
@@ -87,14 +81,21 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_Danh_Muc/Panel_DanhMuc.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_User/ChucNang_User/ChucNang_Panel_Nguoi_Ban.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/model/Model_Danh_Muc.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_Danh_Muc/Panel_Them_Danh_Muc.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Duyet_Nguoi_Ban/Panel_Duyet_Nguoi_Ban.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Duyet_Nguoi_Ban/ChucNang_Panel_Duyet_Nguoi_Ban.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/EventAction/EventActionDanhMuc.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/Table_DuyetNguoiBan.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Duyet_Nguoi_Ban/Form_ChiTiet_Duyet_Nguoi_Ban.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_User/Form_ChiTiet_Nguoi_Ban.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Duyet_Nguoi_Ban/Panel_Duyet_Nguoi_Ban1.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_Danh_Muc/Panel_Them_Danh_Muc.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/Menu_SuperAdmin.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/icon/user.png</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/MainSuperAdmin.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/MainForm.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Tao_Quan_Tri_Vien/Panel_DanhSachQuanTriVien.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Tao_Quan_Tri_Vien/ChucNang_QuanTriVien.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/model/Model_Quan_Tri_Vien.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/EventAction/EventActionQuanTriVien.java</file>
         </group>
     </open-files>
 </project-private>

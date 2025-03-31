@@ -5,10 +5,9 @@
 package com.dai.form.Quan_Ly_Danh_Muc;
 
 import com.dai.model.Model_Danh_Muc;
-import com.dai.model.Model_Khach_Hang;
 import java.awt.Image;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,6 +30,8 @@ public class ChucNang_Panel_Danh_Muc {
             + "FROM Danh_Muc dm "
             + "LEFT JOIN San_Pham sp ON dm.ID_Danh_Muc = sp.ID_Danh_Muc "
             + "GROUP BY dm.ID_Danh_Muc, dm.Ten_Danh_Muc, dm.Anh_Danh_Muc_Blob";
+    static String themDanhMuc = "INSERT INTO Danh_Muc(Ten_Danh_Muc, Anh_Danh_Muc_Blob, Trang_Thai, Mo_Ta)"
+            + "VALUES(?, ?, 'Hoạt động',?)";
 
     public static ArrayList<Model_Danh_Muc> getAll() {
         ArrayList<Model_Danh_Muc> MDM = new ArrayList<>();
@@ -48,7 +49,7 @@ public class ChucNang_Panel_Danh_Muc {
 
                 if (imageBytes != null && imageBytes.length > 0) {
                     ImageIcon imgIcon = new ImageIcon(imageBytes);
-                    Image img = imgIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+                    Image img = imgIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
                     icon = new ImageIcon(img);
                 }
 
@@ -59,5 +60,26 @@ public class ChucNang_Panel_Danh_Muc {
             e.printStackTrace();
         }
         return MDM;
+    }
+
+    public static boolean themDanhMuc(String tenDanhMuc, File imageFile, String moTa) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(themDanhMuc); FileInputStream fis = new FileInputStream(imageFile)) {
+            
+            stmt.setString(1, tenDanhMuc);
+            stmt.setBinaryStream(2, fis, (int) imageFile.length());
+            stmt.setString(3, moTa);
+            
+            int row = stmt.executeUpdate();
+            if (row > 0) {
+                System.out.println("Them danh muc thanh cong");
+                return true;
+            } else {
+                System.out.println("Them danh muc that bai");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
