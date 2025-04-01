@@ -5,6 +5,8 @@
 package com.dai.form.Tao_Quan_Tri_Vien;
 
 import com.dai.model.Model_Quan_Tri_Vien;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,13 +23,15 @@ public class ChucNang_QuanTriVien {
     static String user = "root";
     static String password = "";
     static String readAllDB = "SELECT * FROM `Admin` ";
-    
+    static String themQuanTriVien = "INSERT INTO Admin(Ten_Admin, Ten_Tai_Khoan, Mat_Khau, Trang_Thai, Role)"
+            + "VALUES(?, ?, ?, 'Hoạt động', '4')";
+
     public static ArrayList<Model_Quan_Tri_Vien> getAll() {
         ArrayList<Model_Quan_Tri_Vien> MQTV = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readAllDB)) {
             ResultSet rs = stmt.executeQuery();
-            
-            while (rs.next()) {                
+
+            while (rs.next()) {
                 Model_Quan_Tri_Vien qtv = new Model_Quan_Tri_Vien();
                 qtv.setIdAdmin(rs.getString("ID_Admin"));
                 qtv.setTenAdmin(rs.getString("Ten_Admin"));
@@ -39,5 +43,24 @@ public class ChucNang_QuanTriVien {
             e.printStackTrace();
         }
         return MQTV;
+    }
+
+    public static boolean themQuanTriVien(String tenAdmin, String tenDangNhap, String matKhau) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(themQuanTriVien);) {
+
+            stmt.setString(1, tenAdmin);
+            stmt.setString(2, tenDangNhap);
+            stmt.setString(3, matKhau);
+
+            int row = stmt.executeUpdate();
+            if (row > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
