@@ -33,6 +33,9 @@ public class ChucNang_Panel_Danh_Muc {
     static String themDanhMuc = "INSERT INTO Danh_Muc(Ten_Danh_Muc, Anh_Danh_Muc_Blob, Trang_Thai, Mo_Ta)"
             + "VALUES(?, ?, 'Hoạt động',?)";
 
+    static String UpdateTrangThaiNgungHoatDong = "UPDATE Danh_Muc SET Trang_Thai = 'Ngưng hoạt động' WHERE ID_Danh_Muc = ?";
+    static String UpdateTrangThaiHoatDong = "UPDATE Danh_Muc SET Trang_Thai = 'Hoạt động' WHERE ID_Danh_Muc = ?";
+
     public static ArrayList<Model_Danh_Muc> getAll() {
         ArrayList<Model_Danh_Muc> MDM = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readTabelDanhMuc);) {
@@ -64,17 +67,51 @@ public class ChucNang_Panel_Danh_Muc {
 
     public static boolean themDanhMuc(String tenDanhMuc, File imageFile, String moTa) {
         try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(themDanhMuc); FileInputStream fis = new FileInputStream(imageFile)) {
-            
+
             stmt.setString(1, tenDanhMuc);
             stmt.setBinaryStream(2, fis, (int) imageFile.length());
             stmt.setString(3, moTa);
-            
+
             int row = stmt.executeUpdate();
             if (row > 0) {
                 System.out.println("Them danh muc thanh cong");
                 return true;
             } else {
                 System.out.println("Them danh muc that bai");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static Boolean UpdateTrangThaiNgungHoatDong(String ma_Danh_MUc) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(UpdateTrangThaiNgungHoatDong)) {
+            stmt.setString(1, ma_Danh_MUc);
+
+            int row = stmt.executeUpdate();
+
+            if (row > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static Boolean UpdateTrangThaiHoatDong(String ma_Danh_Muc) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(UpdateTrangThaiHoatDong)) {
+            stmt.setString(1, ma_Danh_Muc);
+
+            int row = stmt.executeUpdate();
+
+            if (row > 0) {
+                return true;
+            } else {
                 return false;
             }
         } catch (Exception e) {

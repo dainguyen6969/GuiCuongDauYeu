@@ -88,6 +88,7 @@ public class Panel_Them_Danh_Muc extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(250, 250, 250));
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

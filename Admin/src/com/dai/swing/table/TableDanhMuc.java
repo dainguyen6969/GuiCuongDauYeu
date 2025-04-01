@@ -80,8 +80,8 @@ public class TableDanhMuc extends JTable {
     
     @Override
     public TableCellEditor getCellEditor(int row, int col) {
-        if (col == 3) {
-            return new TableCellAction();
+        if (col == 4) {
+            return new TableCellActionDanhMuc();
         } else {
             return super.getCellEditor(row, col);
         }

@@ -1,8 +1,5 @@
 package com.dai.form.Duyet_Nguoi_Ban;
 
-import com.dai.form.Quan_Ly_User.*;
-import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
-import com.dai.model.Model_Khach_Hang;
 import com.dai.model.model_Duyet_Nguoi_Ban;
 import javax.swing.JFrame;
 

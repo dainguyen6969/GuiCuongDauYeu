@@ -4,6 +4,8 @@
  */
 package com.dai.main;
 
+import com.dai.dialog.Message;
+import com.mysql.cj.Messages;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +21,7 @@ public class DangNhap extends javax.swing.JFrame {
     static String url = "jdbc:mysql://localhost:3306/DATN";
     static String user = "root";
     static String password = "";
-    static String checkTaiKhoan = "SELECT Ten_Dang_Nhap, Mat_Khau FROM `Admin` WHERE Ten_Dang_Nhap = ? AND Mat_Khau = ? AND Role = ? AND Trang_Thai = ?;";
+    static String checkTaiKhoan = "SELECT Ten_Dang_Nhap, Mat_Khau FROM `Admin` WHERE Ten_Dang_Nhap = ? AND Mat_Khau = ? AND Role = ? AND Trang_Thai = ?";
 
     public DangNhap() {
         initComponents();
@@ -50,20 +52,25 @@ public class DangNhap extends javax.swing.JFrame {
         txt_TenDangNhap = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bttn_DangNhap = new javax.swing.JButton();
         txt_MatKhau = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(250, 250, 250));
 
+        jPanel1.setBackground(new java.awt.Color(250, 250, 250));
+        jPanel1.setForeground(new java.awt.Color(250, 250, 250));
+
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel1.setText("Tên đăng nhập");
 
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel2.setText("Mật khẩu");
 
-        jButton1.setText("Đăng nhập");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bttn_DangNhap.setText("Đăng nhập");
+        bttn_DangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bttn_DangNhapActionPerformed(evt);
             }
         });
 
@@ -71,23 +78,19 @@ public class DangNhap extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(51, 51, 51)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_TenDangNhap)
-                            .addComponent(txt_MatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))))
+                        .addComponent(jLabel2)
+                        .addGap(51, 51, 51)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_TenDangNhap)
+                    .addComponent(txt_MatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(bttn_DangNhap, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(59, 59, 59))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,9 +104,9 @@ public class DangNhap extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txt_MatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(bttn_DangNhap)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,16 +125,44 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bttn_DangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_DangNhapActionPerformed
         // TODO add your handling code here:
         if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 4, "Hoạt động")) {
-            new MainAdmin().setVisible(true);
+            if (txt_TenDangNhap.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui long khong de trong ten dang nhap");
+            } else {
+                new MainAdmin().setVisible(true);
+            }
         } else if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 5, "Hoạt động")) {
-            new MainSuperAdmin().setVisible(true);
-        } else{
+            if (txt_TenDangNhap.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui long khong de trong ten dang nhap");
+            } else {
+                new MainSuperAdmin().setVisible(true);
+            }
+        } else if (txt_MatKhau.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui long khong der trong mat khau");
+        } else {
             JOptionPane.showMessageDialog(this, "Dang nhap that bai.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+//        if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 4, "Hoạt động")) {
+//            new MainAdmin().setVisible(true);
+//        } else if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 5, "Hoạt động")) {
+//            new MainSuperAdmin().setVisible(true);
+//        } else if (txt_TenDangNhap.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Vui long khong de trong ten dang nhap");
+//        } else if (txt_MatKhau.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Vui long khong der trong mat khau");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Dang nhap that bai.");
+//        }
+    }//GEN-LAST:event_bttn_DangNhapActionPerformed
+
+    private boolean showMessage(String message) {
+        Message obj = new Message(DangNhap.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
 
     /**
      * @param args the command line arguments
@@ -169,7 +200,7 @@ public class DangNhap extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bttn_DangNhap;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

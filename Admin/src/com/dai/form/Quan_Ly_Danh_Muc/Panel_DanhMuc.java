@@ -35,12 +35,14 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
         eventActionDanhMuc = new EventActionDanhMuc() {
             @Override
             public void turnOn(Model_Danh_Muc danhMuc) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                ChucNang_Panel_Danh_Muc.UpdateTrangThaiHoatDong(danhMuc.getID_Danh_Muc());
+                fillTableData(ChucNang_Panel_Danh_Muc.getAll());
             }
 
             @Override
             public void shutDown(Model_Danh_Muc danhMuc) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                ChucNang_Panel_Danh_Muc.UpdateTrangThaiNgungHoatDong(danhMuc.getID_Danh_Muc());
+                fillTableData(ChucNang_Panel_Danh_Muc.getAll());
             }
         };
     }

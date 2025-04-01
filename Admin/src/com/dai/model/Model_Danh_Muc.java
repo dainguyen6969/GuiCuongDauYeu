@@ -21,6 +21,7 @@ public class Model_Danh_Muc {
     private Icon AnhDanhMuc;
     private String TrangThai;
     private int SoLuongSanPham;
+    
     public String getID_Danh_Muc() {
         return ID_Danh_Muc;
     }
@@ -84,6 +85,6 @@ public class Model_Danh_Muc {
     }
 
     public Object[] toRowTable(EventActionDanhMuc event) {
-        return new Object[]{new ModelProfile(AnhDanhMuc, Ten_Danh_Muc), ID_Danh_Muc, SoLuongSanPham,TrangThai, new ModelAction(this, (event))};
+        return new Object[]{new ModelProfile(AnhDanhMuc, Ten_Danh_Muc), ID_Danh_Muc, SoLuongSanPham,TrangThai, new ModelAction(this, event)};
     }
 }
