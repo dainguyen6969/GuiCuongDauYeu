@@ -5,6 +5,8 @@
 package com.dai.form.Quan_Ly_User;
 
 import com.dai.dialog.Message;
+import com.dai.dialog.MessageThongBao;
+import com.dai.form.Quan_Ly_Danh_Muc.ChucNang_Panel_Danh_Muc;
 import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
 import com.dai.main.MainAdmin;
 import com.dai.model.Model_Khach_Hang;
@@ -36,14 +38,34 @@ public class Panel_KhachHang extends javax.swing.JPanel {
         eventActionNguoiMua = new EventActionNguoiMua() {
             @Override
             public void banRemoved(Model_Khach_Hang khachHang) {
-                ChucNang_Panel_Khach_hang.UpdateTrangThaiHoatDong(khachHang.getMa_Khach_Hang());
-                fillTableData(ChucNang_Panel_Khach_hang.getAll());
+//                ChucNang_Panel_Khach_hang.UpdateTrangThaiHoatDong(khachHang.getMa_Khach_Hang());
+//                fillTableData(ChucNang_Panel_Khach_hang.getAll());
+                if (khachHang.getTrang_Thai().equals("Hoạt động")) {
+                    showMessage("Người mua đang hoạt động.");
+                } else if (khachHang.getTrang_Thai().equals("Vụt gậy")) {
+                    if (showMessageBanCoMuon("Gỡ gậy cho người mua " + khachHang.getHo_Ten())) {
+                        ChucNang_Panel_Khach_hang.UpdateTrangThaiHoatDong(khachHang.getMa_Khach_Hang());
+                        fillTableData(ChucNang_Panel_Khach_hang.getAll());
+                    } else {
+                        System.out.println("User click Cancel");
+                    }
+                }
             }
 
             @Override
             public void ban(Model_Khach_Hang khachHang) {
-                ChucNang_Panel_Khach_hang.UpdateTrangThaiVutGay(khachHang.getMa_Khach_Hang());
-                fillTableData(ChucNang_Panel_Khach_hang.getAll());
+//                ChucNang_Panel_Khach_hang.UpdateTrangThaiVutGay(khachHang.getMa_Khach_Hang());
+//                fillTableData(ChucNang_Panel_Khach_hang.getAll());
+                if (khachHang.getTrang_Thai().equals("Vụt gậy")) {
+                    showMessage("Nguời mua đang bị đánh gậy.");
+                } else if (khachHang.getTrang_Thai().equals("Hoạt động")) {
+                    if (showMessageBanCoMuon("Vụt gậy người mua " + khachHang.getHo_Ten())) {
+                        ChucNang_Panel_Khach_hang.UpdateTrangThaiVutGay(khachHang.getMa_Khach_Hang());
+                        fillTableData(ChucNang_Panel_Khach_hang.getAll());
+                    } else {
+                        System.out.println("User click Cancel");
+                    }
+                }
             }
         };
 
@@ -55,6 +77,12 @@ public class Panel_KhachHang extends javax.swing.JPanel {
         for (Model_Khach_Hang model_Khach_Hang : kh) {
             model.addRow(new Model_Khach_Hang(model_Khach_Hang.getHo_Ten(), model_Khach_Hang.getMa_Khach_Hang(), model_Khach_Hang.getSo_Dien_Thoai(), model_Khach_Hang.getTrang_Thai()).toRowTable(eventActionNguoiMua));
         }
+    }
+
+    private boolean showMessageBanCoMuon(String message) {
+        MessageThongBao obj = new MessageThongBao(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
     }
 
     private boolean showMessage(String message) {

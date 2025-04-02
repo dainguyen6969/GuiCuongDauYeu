@@ -1,5 +1,8 @@
 package com.dai.form.Tao_Quan_Tri_Vien;
 
+import com.dai.dialog.Message;
+import com.dai.main.MainAdmin;
+
 /**
  *
  * @author dainguyen
@@ -121,14 +124,19 @@ public class Panel_ThemQuanTriVien extends javax.swing.JPanel {
     private void bttn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_ThemActionPerformed
         // TODO add your handling code here:
         if (txt_Password.getText().equals(txt_NhapLaiPassword.getText())) {
-                    ChucNang_QuanTriVien.themQuanTriVien(txt_TenAdmin.getText(), txt_TenDangNhap.getText(), txt_Password .getText());
+            ChucNang_QuanTriVien.themQuanTriVien(txt_TenAdmin.getText(), txt_TenDangNhap.getText(), txt_Password.getText());
 
         } else {
-            System.out.println("Vui long nhap lai mat khau");
+            showMessage("Mật khẩu không trùng khớp!");
         }
-        //ChucNang_QuanTriVien.themQuanTriVien(txt_TenAdmin.getText(), txt_TenDangNhap.getText(), txt_Password.getText());
+
     }//GEN-LAST:event_bttn_ThemActionPerformed
 
+    private boolean showMessage(String message) {
+        Message obj = new Message(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttn_Them;

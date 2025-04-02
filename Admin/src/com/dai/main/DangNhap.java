@@ -4,6 +4,7 @@
  */
 package com.dai.main;
 
+import com.dai.component.header;
 import com.dai.dialog.Message;
 import com.mysql.cj.Messages;
 import java.sql.Connection;
@@ -127,6 +128,7 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void bttn_DangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_DangNhapActionPerformed
         // TODO add your handling code here:
+        String tendangnhap = txt_TenDangNhap.getText();
         if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 4, "Hoạt động")) {
             if (txt_TenDangNhap.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Vui long khong de trong ten dang nhap");

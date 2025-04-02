@@ -36,6 +36,20 @@ public class ChucNang_Panel_Danh_Muc {
     static String UpdateTrangThaiNgungHoatDong = "UPDATE Danh_Muc SET Trang_Thai = 'Ngưng hoạt động' WHERE ID_Danh_Muc = ?";
     static String UpdateTrangThaiHoatDong = "UPDATE Danh_Muc SET Trang_Thai = 'Hoạt động' WHERE ID_Danh_Muc = ?";
 
+    static String readDanhMucHoatDong = "SELECT dm.Anh_Danh_Muc_Blob, dm.Ten_Danh_Muc, dm.ID_Danh_Muc, dm.Trang_Thai, "
+            + "COUNT(sp.ID_San_Pham) AS SoLuongSanPham "
+            + "FROM Danh_Muc dm "
+            + "LEFT JOIN San_Pham sp ON dm.ID_Danh_Muc = sp.ID_Danh_Muc "
+            + "WHERE dm.Trang_Thai = 'Hoạt động' "
+            + "GROUP BY dm.ID_Danh_Muc, dm.Ten_Danh_Muc, dm.Anh_Danh_Muc_Blob ";
+
+    static String readDanhMucNgungHoatDong = "SELECT dm.Anh_Danh_Muc_Blob, dm.Ten_Danh_Muc, dm.ID_Danh_Muc, dm.Trang_Thai, "
+            + "COUNT(sp.ID_San_Pham) AS SoLuongSanPham "
+            + "FROM Danh_Muc dm "
+            + "LEFT JOIN San_Pham sp ON dm.ID_Danh_Muc = sp.ID_Danh_Muc "
+            + "WHERE dm.Trang_Thai = 'Ngưng hoạt động' "
+            + "GROUP BY dm.ID_Danh_Muc, dm.Ten_Danh_Muc, dm.Anh_Danh_Muc_Blob ";
+
     public static ArrayList<Model_Danh_Muc> getAll() {
         ArrayList<Model_Danh_Muc> MDM = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readTabelDanhMuc);) {
@@ -118,5 +132,63 @@ public class ChucNang_Panel_Danh_Muc {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static ArrayList<Model_Danh_Muc> getAllHoatDong() {
+        ArrayList<Model_Danh_Muc> MDM = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readDanhMucHoatDong);) {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String tenDanhMuc = rs.getString("Ten_Danh_Muc");
+                String idDanhMuc = rs.getString("ID_Danh_Muc");
+                String trangThai = rs.getString("Trang_Thai");
+                int soLuongSanPham = rs.getInt("SoLuongSanPham");
+                // Lấy ảnh từ BLOB
+                byte[] imageBytes = rs.getBytes("Anh_Danh_Muc_Blob");
+                Icon icon = null;
+
+                if (imageBytes != null && imageBytes.length > 0) {
+                    ImageIcon imgIcon = new ImageIcon(imageBytes);
+                    Image img = imgIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                    icon = new ImageIcon(img);
+                }
+
+                // Thêm vào danh sách
+                MDM.add(new Model_Danh_Muc(icon, tenDanhMuc, idDanhMuc, soLuongSanPham, trangThai));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return MDM;
+    }
+
+    public static ArrayList<Model_Danh_Muc> getAllNgungHoatDong() {
+        ArrayList<Model_Danh_Muc> MDM = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readDanhMucNgungHoatDong);) {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String tenDanhMuc = rs.getString("Ten_Danh_Muc");
+                String idDanhMuc = rs.getString("ID_Danh_Muc");
+                String trangThai = rs.getString("Trang_Thai");
+                int soLuongSanPham = rs.getInt("SoLuongSanPham");
+                // Lấy ảnh từ BLOB
+                byte[] imageBytes = rs.getBytes("Anh_Danh_Muc_Blob");
+                Icon icon = null;
+
+                if (imageBytes != null && imageBytes.length > 0) {
+                    ImageIcon imgIcon = new ImageIcon(imageBytes);
+                    Image img = imgIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                    icon = new ImageIcon(img);
+                }
+
+                // Thêm vào danh sách
+                MDM.add(new Model_Danh_Muc(icon, tenDanhMuc, idDanhMuc, soLuongSanPham, trangThai));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return MDM;
     }
 }

@@ -39,13 +39,15 @@ public class ChucNang_Panel_Duyet_Nguoi_Ban {
 
     static String readAllHuyDuyet = "SELECT dnm.ID_Duyet_Nguoi_Mua, dnm.ID_Nguoi_Mua, dnm.Ten_Shop, nm.Email, nm.So_Dien_Thoai, dnm.Trang_Thai, dnm.Dia_Chi_Lay_Hang, dnm.CCCD, dnm.Ngay_Gui_Duyet "
             + "FROM Duyet_Nguoi_Mua dnm INNER JOIN Người_Mua nm "
-            + "ON dnm.ID_Nguoi_Mua = nm.ID_Nguoi_Mua WHERE dnm.Trang_Thai = 'Hủy duyệt'";
+            + "ON dnm.ID_Nguoi_Mua = nm.ID_Nguoi_Mua WHERE dnm.Trang_Thai = 'Hủy duyệt' ";
 
     static String readAllChoDuyet = "SELECT dnm.ID_Duyet_Nguoi_Mua, dnm.ID_Nguoi_Mua, dnm.Ten_Shop, nm.Email, nm.So_Dien_Thoai, dnm.Trang_Thai, dnm.Dia_Chi_Lay_Hang, dnm.CCCD, dnm.Ngay_Gui_Duyet "
             + "FROM Duyet_Nguoi_Mua dnm INNER JOIN Người_Mua nm "
+            + "ON dnm.ID_Nguoi_Mua = nm.ID_Nguoi_Mua WHERE dnm.Trang_Thai = 'Chờ duyệt' ";
+ 
+    static String timKiemDuyetNguoiMua = "SELECT dnm.ID_Duyet_Nguoi_Mua, dnm.ID_Nguoi_Mua, dnm.Ten_Shop, nm.Email, nm.So_Dien_Thoai, dnm.Trang_Thai, dnm.Dia_Chi_Lay_Hang, dnm.CCCD, dnm.Ngay_Gui_Duyet "
+            + "FROM Duyet_Nguoi_Mua dnm INNER JOIN Người_Mua nm "
             + "ON dnm.ID_Nguoi_Mua = nm.ID_Nguoi_Mua WHERE dnm.ID_Duyet_Nguoi_Mua = ?";
-
-    static String timKiemDuyetNguoiMua = "";
 
     public static ArrayList<model_Duyet_Nguoi_Ban> getAll() {
         ArrayList<model_Duyet_Nguoi_Ban> MDNB = new ArrayList<>();
@@ -244,7 +246,7 @@ public class ChucNang_Panel_Duyet_Nguoi_Ban {
 
     public static ArrayList<model_Duyet_Nguoi_Ban> getTimKiemDuyetNguoiBan(String ma_Duyet_Nguoi_Mua) {
         ArrayList<model_Duyet_Nguoi_Ban> MDNB = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readDuyetNguoiMua)) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(timKiemDuyetNguoiMua)) {
             stmt.setString(1, ma_Duyet_Nguoi_Mua);
             ResultSet rs = stmt.executeQuery();
 

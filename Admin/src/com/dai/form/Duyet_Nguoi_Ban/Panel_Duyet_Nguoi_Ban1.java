@@ -5,6 +5,7 @@
 package com.dai.form.Duyet_Nguoi_Ban;
 
 import com.dai.dialog.Message;
+import com.dai.dialog.MessageThongBao;
 import com.dai.main.MainAdmin;
 import com.dai.model.model_Duyet_Nguoi_Ban;
 import com.dai.swing.table.EventAction.EventActionDuyetNguoiBan;
@@ -53,7 +54,8 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                 } else if (duyetNguoiBan.getTrang_Thai().equals("Hủy duyệt")) {
                     showMessage("Người mua đã bị hủy duyệt");
                 } else if (duyetNguoiBan.getTrang_Thai().equals("Chờ duyệt")) {
-                    if (showMessage("Duyệt : " + duyetNguoiBan.getTen_Shop())) {
+                    if (showMessageBanCoMuon("Duyệt Shop: " + duyetNguoiBan.getTen_Shop())) {
+
                         ChucNang_Panel_Duyet_Nguoi_Ban.UpdateTrangThaiDaDuyet(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
                         fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAll());
                     } else {
@@ -64,10 +66,15 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
 
             @Override
             public void huyDuyet(model_Duyet_Nguoi_Ban duyetNguoiBan) {
-                //Nho dieu kien cho phan nay nua
-                if (showMessage("Hủy duyệt : " + duyetNguoiBan.getTen_Shop())) {
-                    ChucNang_Panel_Duyet_Nguoi_Ban.UpdateTrangThaiHuyDuyet(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
-                    fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAll());
+                if (duyetNguoiBan.getTrang_Thai().equals("Hủy duyệt")) {
+                    showMessage("Người mua đã bị hủy duyệt trước đó");
+                } else if (duyetNguoiBan.getTrang_Thai().equals("Đã duyệt")) {
+                    showMessage("Không thể hủy duyệt người đã được duyệt");
+                } else if (duyetNguoiBan.getTrang_Thai().equals("Chờ duyệt")) {
+                    if (showMessageBanCoMuon("Hủy duyệt : " + duyetNguoiBan.getTen_Shop())) {
+                        ChucNang_Panel_Duyet_Nguoi_Ban.UpdateTrangThaiHuyDuyet(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
+                        fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAll());
+                    }
                 } else {
                     System.out.println("User click Cancel");
                 }
@@ -86,6 +93,12 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
 //        for (model_Duyet_Nguoi_Ban duyet_Nguoi_Ban : dnb) {
 //            model.addRow(duyet_Nguoi_Ban.toRowTable(evenActionDuyetNguoiBan));
 //        }
+    }
+
+    private boolean showMessageBanCoMuon(String message) {
+        MessageThongBao obj = new MessageThongBao(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
     }
 
     private boolean showMessage(String message) {
@@ -261,7 +274,7 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("Tìm kiếm theo mã");
+        jLabel2.setText("Tìm kiếm theo mã duyệt mua");
 
         lbl_ChoDuyet.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lbl_ChoDuyet.setText("Chờ duyệt");
@@ -284,7 +297,7 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -304,12 +317,10 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8))
                     .addComponent(jLabel1))
-                .addContainerGap(674, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(642, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -318,20 +329,20 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_TatCa)
-                    .addComponent(lbl_DaDuyet)
-                    .addComponent(lbl_HuyDuyet)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbl_ChoDuyet)
-                        .addComponent(jLabel8)))
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbl_TatCa)
+                        .addComponent(lbl_DaDuyet)
+                        .addComponent(lbl_HuyDuyet)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel7)))
                 .addGap(5, 5, 5)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addComponent(txt_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -395,12 +406,12 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
     private void lbl_HuyDuyetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HuyDuyetMouseReleased
         // TODO add your handling code here:
         fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAllHuyDuyet());
-        lbl_HuyDuyet.setForeground(Color.red);
+        lbl_HuyDuyet.setForeground(Color.black);
     }//GEN-LAST:event_lbl_HuyDuyetMouseReleased
 
     private void lbl_HuyDuyetMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HuyDuyetMousePressed
         // TODO add your handling code here:
-        lbl_HuyDuyet.setForeground(Color.black);
+        lbl_HuyDuyet.setForeground(Color.red);
     }//GEN-LAST:event_lbl_HuyDuyetMousePressed
 
     private void tbl_Duyet_Nguoi_BanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_Duyet_Nguoi_BanMouseClicked
@@ -418,7 +429,7 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
 
     private void lbl_ChoDuyetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ChoDuyetMouseReleased
         // TODO add your handling code here:
-        lbl_HuyDuyet.setForeground(Color.black);
+        lbl_ChoDuyet.setForeground(Color.black);
     }//GEN-LAST:event_lbl_ChoDuyetMouseReleased
 
     private void lbl_HuyDuyetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HuyDuyetMouseClicked

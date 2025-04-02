@@ -5,8 +5,9 @@
 package com.dai.form.Quan_Ly_User;
 
 import com.dai.dialog.Message;
+import com.dai.dialog.MessageThongBao;
+import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
 import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Nguoi_Ban;
-import com.dai.form.Test;
 import com.dai.main.MainAdmin;
 import com.dai.model.Model_Nguoi_Ban;
 import com.dai.swing.table.EventAction.EventActionNguoiBan;
@@ -39,12 +40,32 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
             public void banRemoved(Model_Nguoi_Ban nguoiBan) {
                 ChucNang_Panel_Nguoi_Ban.UpdateTrangThaiHoatDong(nguoiBan.getID_Nguoi_Ban());
                 fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
+                if (nguoiBan.getTrang_Thai().equals("Hoạt động")) {
+                    showMessage("Người bán đang hoạt động.");
+                } else if (nguoiBan.getTrang_Thai().equals("Banned")) {
+                    if (showMessageBanCoMuon("Gỡ gậy cho Shop " + nguoiBan.getTen_Cua_Hang())) {
+                        ChucNang_Panel_Khach_hang.UpdateTrangThaiHoatDong(nguoiBan.getID_Nguoi_Ban());
+                        fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
+                    } else {
+                        System.out.println("User click Cancel");
+                    }
+                }
             }
 
             @Override
             public void ban(Model_Nguoi_Ban nguoiBan) {
                 ChucNang_Panel_Nguoi_Ban.UpdateTrangThaiVutGay(nguoiBan.getID_Nguoi_Ban());
                 fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
+                if (nguoiBan.getTrang_Thai().equals("Banned")) {
+                    showMessage("Nguời bán đang bị đánh gậy.");
+                } else if (nguoiBan.getTrang_Thai().equals("Hoạt động")) {
+                    if (showMessageBanCoMuon("Vụt gậy Shop " + nguoiBan.getTen_Cua_Hang())) {
+                        ChucNang_Panel_Nguoi_Ban.UpdateTrangThaiVutGay(nguoiBan.getID_Nguoi_Ban());
+                        fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
+                    } else {
+                        System.out.println("User click Cancel");
+                    }
+                }
             }
         };
     }
@@ -55,6 +76,12 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
         for (Model_Nguoi_Ban model_Nguoi_Ban : nB) {
             model.addRow(new Model_Nguoi_Ban(model_Nguoi_Ban.getTen_Cua_Hang(), model_Nguoi_Ban.getID_Nguoi_Ban(), model_Nguoi_Ban.getNgay_Tham_Gia(), model_Nguoi_Ban.getTrang_Thai()).toRowTable(eventActionNguoiBan));
         }
+    }
+
+    private boolean showMessageBanCoMuon(String message) {
+        MessageThongBao obj = new MessageThongBao(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
     }
 
     private boolean showMessage(String message) {
@@ -90,7 +117,7 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tên Shop", "Mã khách hàng", "Ngày tham gia", "Trạng thái", "Thao tác"
+                "Tên Shop", "Mã người mua", "Ngày tham gia", "Trạng thái", "Thao tác"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -130,6 +157,9 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
         lbl_VutGay.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lbl_VutGay.setText("Vụt gậy");
         lbl_VutGay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_VutGayMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lbl_VutGayMousePressed(evt);
             }
@@ -295,7 +325,6 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
 
     private void lbl_VutGayMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_VutGayMouseReleased
         // TODO add your handling code here:
-        fillTableData(ChucNang_Panel_Nguoi_Ban.getAllVutGay());
         lbl_VutGay.setForeground(Color.black);
     }//GEN-LAST:event_lbl_VutGayMouseReleased
 
@@ -312,6 +341,11 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
         form_CT_NB.setVisible(true);
 
     }//GEN-LAST:event_tbl_Nguoi_BanMouseClicked
+
+    private void lbl_VutGayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_VutGayMouseClicked
+        // TODO add your handling code here:
+        fillTableData(ChucNang_Panel_Nguoi_Ban.getAllVutGay());
+    }//GEN-LAST:event_lbl_VutGayMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

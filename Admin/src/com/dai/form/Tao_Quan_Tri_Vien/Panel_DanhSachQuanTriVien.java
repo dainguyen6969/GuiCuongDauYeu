@@ -2,6 +2,8 @@ package com.dai.form.Tao_Quan_Tri_Vien;
 
 import com.dai.form.Quan_Ly_User.*;
 import com.dai.dialog.Message;
+import com.dai.dialog.MessageThongBao;
+import com.dai.form.Quan_Ly_Danh_Muc.ChucNang_Panel_Danh_Muc;
 import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
 import com.dai.main.MainAdmin;
 import com.dai.model.Model_Quan_Tri_Vien;
@@ -25,26 +27,34 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
         initComponents();
         tbl_QuanTriVien.fixTable(jScrollPane1);
         setOpaque(false);
-        //initTableNguoiMuaData();
+        initTableNguoiMuaData();
         fillTableData(ChucNang_QuanTriVien.getAll());
     }
 
-//    private void initTableNguoiMuaData() {
-//        eventActionNguoiMua = new EventActionNguoiMua() {
-//            @Override
-//            public void banRemoved(Model_Khach_Hang khachHang) {
-//                ChucNang_Panel_Khach_hang.UpdateTrangThaiHoatDong(khachHang.getMa_Khach_Hang());
-//                fillTableData(ChucNang_Panel_Khach_hang.getAll());
-//            }
-//
-//            @Override
-//            public void ban(Model_Khach_Hang khachHang) {
-//                ChucNang_Panel_Khach_hang.UpdateTrangThaiVutGay(khachHang.getMa_Khach_Hang());
-//                fillTableData(ChucNang_Panel_Khach_hang.getAll());
-//            }
-//        };
-//
-//    }
+    private void initTableNguoiMuaData() {
+        eventActionQuanTriVien = new EventActionQuanTriVien() {
+            @Override
+            public void hoatDong(Model_Quan_Tri_Vien quanTriVien) {
+                //Mai nhớ làm nốt sự kiện cho quản trị viên
+                if (quanTriVien.getTrangThai().equals("Hoạt động")) {
+                    showMessage("Quản trị viên đang hoạt động.");
+                } else if (quanTriVien.getTrangThai().equals("Ngưng hoạt động")) {
+                    if (showMessageBanCoMuon("Hoạt động trở lại của  " + quanTriVien.getTenAdmin())) {
+                        //ChucNang_QuanTriVien.(quanTriVien.getIdAdmin());
+                        fillTableData(ChucNang_QuanTriVien.getAll());
+                    } else {
+                        System.out.println("User click Cancel");
+                    }
+                }
+            }
+
+            @Override
+            public void dungHoatDong(Model_Quan_Tri_Vien quanTriVien) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        };
+
+    }
 
     public void fillTableData(ArrayList<Model_Quan_Tri_Vien> qtv) {
         DefaultTableModel model = (DefaultTableModel) tbl_QuanTriVien.getModel();
@@ -56,6 +66,12 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
 
     private boolean showMessage(String message) {
         Message obj = new Message(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
+
+    private boolean showMessageBanCoMuon(String message) {
+        MessageThongBao obj = new MessageThongBao(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }

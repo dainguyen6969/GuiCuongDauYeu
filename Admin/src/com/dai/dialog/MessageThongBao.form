@@ -59,7 +59,11 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lbMessage" min="-2" pref="350" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="button1" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="button2" min="-2" pref="78" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="button1" min="-2" pref="77" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -74,7 +78,10 @@
                       <Component id="lbMessage" pref="63" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="button1" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="button1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="button2" alignment="3" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="7" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -103,6 +110,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="com.dai.swing.Button" name="button2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ok"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button2ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

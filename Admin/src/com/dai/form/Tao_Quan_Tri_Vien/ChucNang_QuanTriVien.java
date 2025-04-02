@@ -25,6 +25,8 @@ public class ChucNang_QuanTriVien {
     static String readAllDB = "SELECT * FROM `Admin` ";
     static String themQuanTriVien = "INSERT INTO Admin(Ten_Admin, Ten_Tai_Khoan, Mat_Khau, Trang_Thai, Role)"
             + "VALUES(?, ?, ?, 'Hoạt động', '4')";
+    static String readAllDBHoatDong = "SELECT * FROM `Admin` WHERE = 'Hoạt động'";
+    static String readAllDBNgungHoatDong = "SELECT * FROM `Admin` WHERE = 'Dừng hoạt động'";
 
     public static ArrayList<Model_Quan_Tri_Vien> getAll() {
         ArrayList<Model_Quan_Tri_Vien> MQTV = new ArrayList<>();
@@ -62,5 +64,43 @@ public class ChucNang_QuanTriVien {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static ArrayList<Model_Quan_Tri_Vien> getAllHoatDong() {
+        ArrayList<Model_Quan_Tri_Vien> MQTV = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readAllDBHoatDong)) {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Model_Quan_Tri_Vien qtv = new Model_Quan_Tri_Vien();
+                qtv.setIdAdmin(rs.getString("ID_Admin"));
+                qtv.setTenAdmin(rs.getString("Ten_Admin"));
+                qtv.setTrangThai(rs.getString("Trang_Thai"));
+                qtv.setNgayTao(rs.getString("Ngay_Tao"));
+                MQTV.add(qtv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return MQTV;
+    }
+
+    public static ArrayList<Model_Quan_Tri_Vien> getAllNgungHoatDong() {
+        ArrayList<Model_Quan_Tri_Vien> MQTV = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readAllDBNgungHoatDong)) {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Model_Quan_Tri_Vien qtv = new Model_Quan_Tri_Vien();
+                qtv.setIdAdmin(rs.getString("ID_Admin"));
+                qtv.setTenAdmin(rs.getString("Ten_Admin"));
+                qtv.setTrangThai(rs.getString("Trang_Thai"));
+                qtv.setNgayTao(rs.getString("Ngay_Tao"));
+                MQTV.add(qtv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return MQTV;
     }
 }

@@ -7,7 +7,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
-public class Message extends javax.swing.JDialog {
+public class MessageThongBao extends javax.swing.JDialog {
 
     public boolean isOk() {
         return ok;
@@ -21,10 +21,10 @@ public class Message extends javax.swing.JDialog {
     private final Animator animator;
     private boolean show = true;
 
-    public Message(java.awt.Frame parent, boolean modal) {
+    public MessageThongBao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        lbIcon.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.CANCEL, 60, new Color(254, 86, 96), new Color(113, 74, 67)));
+        lbIcon.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.HELP_OUTLINE, 60, new Color(254, 86, 96), new Color(113, 74, 67)));
         setOpacity(0f);
         getContentPane().setBackground(Color.WHITE);
         TimingTarget target = new TimingTargetAdapter() {
@@ -64,6 +64,7 @@ public class Message extends javax.swing.JDialog {
         lbMessage = new javax.swing.JLabel();
         lbIcon = new javax.swing.JLabel();
         button1 = new com.dai.swing.Button();
+        button2 = new com.dai.swing.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -84,6 +85,13 @@ public class Message extends javax.swing.JDialog {
             }
         });
 
+        button2.setText("Ok");
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,7 +103,10 @@ public class Message extends javax.swing.JDialog {
                         .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,7 +117,9 @@ public class Message extends javax.swing.JDialog {
                     .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
@@ -125,6 +138,11 @@ public class Message extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        ok = true;
+        closeMenu();
+    }//GEN-LAST:event_button2ActionPerformed
+
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
         closeMenu();
@@ -140,6 +158,7 @@ public class Message extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.dai.swing.Button button1;
+    private com.dai.swing.Button button2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbIcon;
     private javax.swing.JLabel lbMessage;

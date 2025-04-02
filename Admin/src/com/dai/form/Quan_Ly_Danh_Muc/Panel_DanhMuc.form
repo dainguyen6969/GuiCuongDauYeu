@@ -195,6 +195,7 @@
             <Property name="text" type="java.lang.String" value="Ng&#x1b0;ng ho&#x1ea1;t &#x111;&#x1ed9;ng"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_VutGayMouseClicked"/>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_VutGayMousePressed"/>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_VutGayMouseReleased"/>
           </Events>
