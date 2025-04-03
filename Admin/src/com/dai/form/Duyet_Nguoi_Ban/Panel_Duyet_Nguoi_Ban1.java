@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.dai.form.Duyet_Nguoi_Ban;
 
 import com.dai.dialog.Message;
@@ -55,7 +51,13 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                     showMessage("Người mua đã bị hủy duyệt");
                 } else if (duyetNguoiBan.getTrang_Thai().equals("Chờ duyệt")) {
                     if (showMessageBanCoMuon("Duyệt Shop: " + duyetNguoiBan.getTen_Shop())) {
-
+                        ChucNang_Panel_Duyet_Nguoi_Ban.duyet_Nguoi_Ban(
+                                duyetNguoiBan.getID_Nguoi_Mua(),
+                                duyetNguoiBan.getTen_Shop(),
+                                duyetNguoiBan.getDia_Chi_Lay_Hang(),
+                                duyetNguoiBan.getSo_Dien_Thoai(),
+                                duyetNguoiBan.getEmail(),
+                                duyetNguoiBan.getCccd());
                         ChucNang_Panel_Duyet_Nguoi_Ban.UpdateTrangThaiDaDuyet(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
                         fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAll());
                     } else {

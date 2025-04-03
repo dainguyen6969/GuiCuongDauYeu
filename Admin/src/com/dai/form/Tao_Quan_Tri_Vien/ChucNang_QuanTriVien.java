@@ -1,12 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.dai.form.Tao_Quan_Tri_Vien;
 
 import com.dai.model.Model_Quan_Tri_Vien;
-import java.io.File;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,8 +19,10 @@ public class ChucNang_QuanTriVien {
     static String readAllDB = "SELECT * FROM `Admin` ";
     static String themQuanTriVien = "INSERT INTO Admin(Ten_Admin, Ten_Tai_Khoan, Mat_Khau, Trang_Thai, Role)"
             + "VALUES(?, ?, ?, 'Hoạt động', '4')";
-    static String readAllDBHoatDong = "SELECT * FROM `Admin` WHERE = 'Hoạt động'";
-    static String readAllDBNgungHoatDong = "SELECT * FROM `Admin` WHERE = 'Dừng hoạt động'";
+    static String readAllDBHoatDong = "SELECT * FROM `Admin` WHERE Trang_Thai = 'Hoạt động'";
+    static String readAllDBDungHoatDong = "SELECT * FROM `Admin` WHERE Trang_Thai = 'Dừng hoạt động'";
+    static String updateHoatDongQTV = "UPDATE Admin SET Trang_Thai = 'Hoạt động' WHERE ID_Admin = ? ";
+    static String updateDungHoatDongQTV = "UPDATE Admin SET Trang_Thai = 'Dừng hoạt động' WHERE ID_Admin = ? ";
 
     public static ArrayList<Model_Quan_Tri_Vien> getAll() {
         ArrayList<Model_Quan_Tri_Vien> MQTV = new ArrayList<>();
@@ -87,7 +83,7 @@ public class ChucNang_QuanTriVien {
 
     public static ArrayList<Model_Quan_Tri_Vien> getAllNgungHoatDong() {
         ArrayList<Model_Quan_Tri_Vien> MQTV = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readAllDBNgungHoatDong)) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(readAllDBDungHoatDong)) {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -102,5 +98,39 @@ public class ChucNang_QuanTriVien {
             e.printStackTrace();
         }
         return MQTV;
+    }
+
+    public static Boolean UpdateTrangThaiHoatDong(String ma_Admin) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(updateHoatDongQTV)) {
+            stmt.setString(1, ma_Admin);
+
+            int row = stmt.executeUpdate();
+
+            if (row > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static Boolean UpdateTrangThaiDungHoatDong(String ma_Admin) {
+        try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement stmt = con.prepareStatement(updateDungHoatDongQTV)) {
+            stmt.setString(1, ma_Admin);
+
+            int row = stmt.executeUpdate();
+
+            if (row > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

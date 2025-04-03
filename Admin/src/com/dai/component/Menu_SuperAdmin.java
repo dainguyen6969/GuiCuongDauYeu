@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.dai.component;
 
 import com.dai.event.EventMenu;
@@ -16,14 +12,9 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import com.dai.model.ModelMenu;
 import net.miginfocom.swing.MigLayout;
-import org.jdesktop.animation.timing.Animator;
 import com.dai.scrollbar.ScrollBarCustom;
 import com.dai.swing.MenuAnimation;
 import com.dai.swing.MenuItem;
-import java.awt.BorderLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JScrollBar;
-import javax.swing.UIManager;
 
 /**
  *

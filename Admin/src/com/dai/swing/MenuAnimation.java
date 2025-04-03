@@ -1,8 +1,6 @@
 package com.dai.swing;
 
 import java.awt.Component;
-import java.util.Comparator;
-import javax.management.Query;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;

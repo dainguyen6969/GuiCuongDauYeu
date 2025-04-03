@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.dai.form.Quan_Ly_User;
 
 import com.dai.dialog.Message;
 import com.dai.dialog.MessageThongBao;
-import com.dai.form.Quan_Ly_Danh_Muc.ChucNang_Panel_Danh_Muc;
 import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
 import com.dai.main.MainAdmin;
 import com.dai.model.Model_Khach_Hang;

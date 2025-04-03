@@ -137,7 +137,7 @@
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="lbl_VutGay" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_DungHoatDong" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -163,7 +163,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbl_TatCa" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_HoatDong" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbl_VutGay" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_DungHoatDong" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -187,16 +187,17 @@
             <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch qu&#x1ea3;n tr&#x1ecb;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_VutGay">
+        <Component class="javax.swing.JLabel" name="lbl_DungHoatDong">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="V&#x1ee5;t g&#x1ead;y"/>
+            <Property name="text" type="java.lang.String" value="D&#x1eeb;ng ho&#x1ea1;t &#x111;&#x1ed9;ng"/>
           </Properties>
           <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_VutGayMousePressed"/>
-            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_VutGayMouseReleased"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_DungHoatDongMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_DungHoatDongMousePressed"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_DungHoatDongMouseReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_TatCa">

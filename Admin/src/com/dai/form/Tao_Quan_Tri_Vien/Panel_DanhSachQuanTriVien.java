@@ -3,8 +3,6 @@ package com.dai.form.Tao_Quan_Tri_Vien;
 import com.dai.form.Quan_Ly_User.*;
 import com.dai.dialog.Message;
 import com.dai.dialog.MessageThongBao;
-import com.dai.form.Quan_Ly_Danh_Muc.ChucNang_Panel_Danh_Muc;
-import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
 import com.dai.main.MainAdmin;
 import com.dai.model.Model_Quan_Tri_Vien;
 import java.awt.Color;
@@ -38,9 +36,9 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
                 //Mai nhớ làm nốt sự kiện cho quản trị viên
                 if (quanTriVien.getTrangThai().equals("Hoạt động")) {
                     showMessage("Quản trị viên đang hoạt động.");
-                } else if (quanTriVien.getTrangThai().equals("Ngưng hoạt động")) {
-                    if (showMessageBanCoMuon("Hoạt động trở lại của  " + quanTriVien.getTenAdmin())) {
-                        //ChucNang_QuanTriVien.(quanTriVien.getIdAdmin());
+                } else if (quanTriVien.getTrangThai().equals("Dừng hoạt động")) {
+                    if (showMessageBanCoMuon("Hoạt động trở lại của quản trị viên " + quanTriVien.getTenAdmin())) {
+                        ChucNang_QuanTriVien.UpdateTrangThaiHoatDong(quanTriVien.getIdAdmin());
                         fillTableData(ChucNang_QuanTriVien.getAll());
                     } else {
                         System.out.println("User click Cancel");
@@ -50,7 +48,16 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
 
             @Override
             public void dungHoatDong(Model_Quan_Tri_Vien quanTriVien) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                if (quanTriVien.getTrangThai().equals("Dừng hoạt động")) {
+                    showMessage("Quản trị viên đã dừng hoạt động.");
+                } else if (quanTriVien.getTrangThai().equals("Hoạt động")) {
+                    if (showMessageBanCoMuon("Dừng hoạt động quản trị viên " + quanTriVien.getTenAdmin())) {
+                        ChucNang_QuanTriVien.UpdateTrangThaiDungHoatDong(quanTriVien.getIdAdmin());
+                        fillTableData(ChucNang_QuanTriVien.getAll());
+                    } else {
+                        System.out.println("User click Cancel");
+                    }
+                }
             }
         };
 
@@ -85,7 +92,7 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
         tbl_QuanTriVien = new com.dai.swing.table.Table();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbl_VutGay = new javax.swing.JLabel();
+        lbl_DungHoatDong = new javax.swing.JLabel();
         lbl_TatCa = new javax.swing.JLabel();
         lbl_HoatDong = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -140,14 +147,17 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setText("Danh sách quản trị");
 
-        lbl_VutGay.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        lbl_VutGay.setText("Vụt gậy");
-        lbl_VutGay.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbl_DungHoatDong.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        lbl_DungHoatDong.setText("Dừng hoạt động");
+        lbl_DungHoatDong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_DungHoatDongMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbl_VutGayMousePressed(evt);
+                lbl_DungHoatDongMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lbl_VutGayMouseReleased(evt);
+                lbl_DungHoatDongMouseReleased(evt);
             }
         });
 
@@ -217,7 +227,7 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
                         .addGap(1, 1, 1)
                         .addComponent(jLabel6)
                         .addGap(27, 27, 27)
-                        .addComponent(lbl_VutGay)
+                        .addComponent(lbl_DungHoatDong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7))
                     .addComponent(jLabel1))
@@ -238,7 +248,7 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_TatCa)
                     .addComponent(lbl_HoatDong)
-                    .addComponent(lbl_VutGay)
+                    .addComponent(lbl_DungHoatDong)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
@@ -273,12 +283,12 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
 
     private void lbl_TatCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_TatCaMouseClicked
         // TODO add your handling code here:
-        //fillTableData(ChucNang_Panel_Khach_hang.getAll());
+        fillTableData(ChucNang_QuanTriVien.getAll());
     }//GEN-LAST:event_lbl_TatCaMouseClicked
 
     private void lbl_HoatDongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HoatDongMouseClicked
         // TODO add your handling code here:
-        //fillTableData(ChucNang_Panel_Khach_hang.getAllHoatDong());
+        fillTableData(ChucNang_QuanTriVien.getAllHoatDong());
     }//GEN-LAST:event_lbl_HoatDongMouseClicked
 
     private void lbl_HoatDongMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HoatDongMouseExited
@@ -306,16 +316,16 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
         lbl_TatCa.setForeground(Color.red);
     }//GEN-LAST:event_lbl_TatCaMousePressed
 
-    private void lbl_VutGayMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_VutGayMouseReleased
+    private void lbl_DungHoatDongMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_DungHoatDongMouseReleased
         // TODO add your handling code here:
-        //fillTableData(ChucNang_Panel_Khach_hang.getAllVutGay());
-        lbl_VutGay.setForeground(Color.black);
-    }//GEN-LAST:event_lbl_VutGayMouseReleased
+        fillTableData(ChucNang_QuanTriVien.getAllHoatDong());
+        lbl_DungHoatDong.setForeground(Color.black);
+    }//GEN-LAST:event_lbl_DungHoatDongMouseReleased
 
-    private void lbl_VutGayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_VutGayMousePressed
+    private void lbl_DungHoatDongMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_DungHoatDongMousePressed
         // TODO add your handling code here:
-        lbl_VutGay.setForeground(Color.red);
-    }//GEN-LAST:event_lbl_VutGayMousePressed
+        lbl_DungHoatDong.setForeground(Color.red);
+    }//GEN-LAST:event_lbl_DungHoatDongMousePressed
 
     private void tbl_QuanTriVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_QuanTriVienMouseClicked
         // TODO add your handling code here:
@@ -324,6 +334,11 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
         Form_ChiTiet_KhachHang form_CT_KH = new Form_ChiTiet_KhachHang(ma_Khach_hang);
         form_CT_KH.setVisible(true);
     }//GEN-LAST:event_tbl_QuanTriVienMouseClicked
+
+    private void lbl_DungHoatDongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_DungHoatDongMouseClicked
+        // TODO add your handling code here:
+        fillTableData(ChucNang_QuanTriVien.getAllNgungHoatDong());
+    }//GEN-LAST:event_lbl_DungHoatDongMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -335,9 +350,9 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_DungHoatDong;
     private javax.swing.JLabel lbl_HoatDong;
     private javax.swing.JLabel lbl_TatCa;
-    private javax.swing.JLabel lbl_VutGay;
     private com.dai.swing.table.Table tbl_QuanTriVien;
     private javax.swing.JTextField txt_TimKiem;
     // End of variables declaration//GEN-END:variables

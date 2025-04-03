@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.dai.model;
-
-import com.dai.swing.table.EventAction.EventActionNguoiMua;
 import com.dai.swing.table.ModelAction;
 import com.dai.swing.table.EventAction.EventActionNguoiBan;
 

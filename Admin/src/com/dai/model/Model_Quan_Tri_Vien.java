@@ -1,6 +1,5 @@
 package com.dai.model;
 
-import com.dai.swing.table.EventAction.EventActionDuyetNguoiBan;
 import com.dai.swing.table.EventAction.EventActionQuanTriVien;
 import com.dai.swing.table.ModelAction;
 
