@@ -125,7 +125,6 @@ public class Panel_ThemQuanTriVien extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (txt_Password.getText().equals(txt_NhapLaiPassword.getText())) {
             ChucNang_QuanTriVien.themQuanTriVien(txt_TenAdmin.getText(), txt_TenDangNhap.getText(), txt_Password.getText());
-
         } else {
             showMessage("Mật khẩu không trùng khớp!");
         }

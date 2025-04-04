@@ -169,6 +169,7 @@ public class Panel_Them_Danh_Muc extends javax.swing.JPanel {
 
     private void bttn_ThemDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_ThemDanhMucActionPerformed
         // TODO add your handling code here:
+        //BUG mota lai thanh tendanh muc va lap lai
         ChucNang_Panel_Danh_Muc.themDanhMuc(txt_TenDanhMuc.getText(), (File) selectedFile, txa_MoTa.getText());
     }//GEN-LAST:event_bttn_ThemDanhMucActionPerformed
 

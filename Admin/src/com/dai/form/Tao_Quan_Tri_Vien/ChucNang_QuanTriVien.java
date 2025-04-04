@@ -17,7 +17,7 @@ public class ChucNang_QuanTriVien {
     static String user = "root";
     static String password = "";
     static String readAllDB = "SELECT * FROM `Admin` ";
-    static String themQuanTriVien = "INSERT INTO Admin(Ten_Admin, Ten_Tai_Khoan, Mat_Khau, Trang_Thai, Role)"
+    static String themQuanTriVien = "INSERT INTO Admin(Ten_Admin, Ten_Dang_Nhap, Mat_Khau, Trang_Thai, Role)"
             + "VALUES(?, ?, ?, 'Hoạt động', '4')";
     static String readAllDBHoatDong = "SELECT * FROM `Admin` WHERE Trang_Thai = 'Hoạt động'";
     static String readAllDBDungHoatDong = "SELECT * FROM `Admin` WHERE Trang_Thai = 'Dừng hoạt động'";

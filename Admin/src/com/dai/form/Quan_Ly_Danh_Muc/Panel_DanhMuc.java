@@ -47,7 +47,8 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
                     }
                 }
             }
-
+            
+            //Khi bam turn on nguoi ban ngung hoat dong thi lai hien ra thong bao ---bug
             @Override
             public void shutDown(Model_Danh_Muc danhMuc) {
                 ChucNang_Panel_Danh_Muc.UpdateTrangThaiNgungHoatDong(danhMuc.getID_Danh_Muc());
@@ -56,7 +57,7 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
                 if (danhMuc.getTrangThai().equals("Ngưng hoạt động")) {
                     showMessage("Danh mục đã ngưng hoạt động.");
                 } else if (danhMuc.getTrangThai().equals("Hoạt động")) {
-                    if (showMessageBanCoMuon("Ngưng hoạt động danh mục " + danhMuc.getTen_Danh_Muc())) {
+                    if (showMessageBanCoMuon("Hoạt động trở lại danh mục " + danhMuc.getTen_Danh_Muc())) {
                         ChucNang_Panel_Danh_Muc.UpdateTrangThaiHoatDong(danhMuc.getID_Danh_Muc());
                         fillTableData(ChucNang_Panel_Danh_Muc.getAll());
                     } else {
@@ -141,8 +142,8 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane2)
+                .addGap(0, 0, 0))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -280,6 +281,7 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
 
     private void txt_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_TimKiemActionPerformed
         // TODO add your handling code here:
+        //Danh muc chua co tim kiem
         String maNguoiBanTimKiem = txt_TimKiem.getText();
         //fillTableData(ChucNang_Panel_Nguoi_Ban.getTimKiem(maNguoiBanTimKiem));
     }//GEN-LAST:event_txt_TimKiemActionPerformed
