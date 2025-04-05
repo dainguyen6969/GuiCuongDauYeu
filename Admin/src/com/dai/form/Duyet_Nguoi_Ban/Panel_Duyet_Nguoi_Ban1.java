@@ -1,6 +1,7 @@
 package com.dai.form.Duyet_Nguoi_Ban;
 
-import com.dai.dialog.Message;
+import com.dai.dialog.MessageCancel;
+import com.dai.dialog.MessageDone;
 import com.dai.dialog.MessageThongBao;
 import com.dai.main.MainAdmin;
 import com.dai.model.model_Duyet_Nguoi_Ban;
@@ -35,7 +36,7 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                 if (duyetNguoiBan.getTrang_Thai().equals("Đã duyệt")) {
                     showMessage("Người mua đã được duyệt");
                 } else if (duyetNguoiBan.getTrang_Thai().equals("Hủy duyệt")) {
-                    showMessage("Người mua đã bị hủy duyệt");
+                    showMessage("Không thể duyệt người mua đã bị hủy duyệt.");
                 } else if (duyetNguoiBan.getTrang_Thai().equals("Chờ duyệt")) {
                     if (showMessageBanCoMuon("Duyệt Shop: " + duyetNguoiBan.getTen_Shop())) {
                         ChucNang_Panel_Duyet_Nguoi_Ban.duyet_Nguoi_Ban(
@@ -46,7 +47,8 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                                 duyetNguoiBan.getEmail(),
                                 duyetNguoiBan.getCccd());
                         ChucNang_Panel_Duyet_Nguoi_Ban.UpdateTrangThaiDaDuyet(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
-                        fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAll());
+                        fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAllChoXacNhan());
+                        showMessageDone("Duyệt thành công.");
                     } else {
                         System.out.println("User click Cancel");
                     }
@@ -62,7 +64,8 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                 } else if (duyetNguoiBan.getTrang_Thai().equals("Chờ duyệt")) {
                     if (showMessageBanCoMuon("Hủy duyệt : " + duyetNguoiBan.getTen_Shop())) {
                         ChucNang_Panel_Duyet_Nguoi_Ban.UpdateTrangThaiHuyDuyet(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
-                        fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAll());
+                        fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAllChoXacNhan());
+                        showMessageDone("Hủy duyệt thành công.");
                     }
                 } else {
                     System.out.println("User click Cancel");
@@ -91,7 +94,13 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
     }
 
     private boolean showMessage(String message) {
-        Message obj = new Message(MainAdmin.getFrames()[0], true);
+        MessageCancel obj = new MessageCancel(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
+
+    private boolean showMessageDone(String message) {
+        MessageDone obj = new MessageDone(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }
@@ -306,7 +315,7 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8))
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txt_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))

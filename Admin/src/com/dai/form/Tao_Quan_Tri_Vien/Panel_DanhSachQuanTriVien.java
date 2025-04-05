@@ -1,7 +1,6 @@
 package com.dai.form.Tao_Quan_Tri_Vien;
 
-import com.dai.form.Quan_Ly_User.*;
-import com.dai.dialog.Message;
+import com.dai.dialog.MessageCancel;
 import com.dai.dialog.MessageThongBao;
 import com.dai.main.MainAdmin;
 import com.dai.model.Model_Quan_Tri_Vien;
@@ -74,7 +73,7 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
     }
 
     private boolean showMessage(String message) {
-        Message obj = new Message(MainAdmin.getFrames()[0], true);
+        MessageCancel obj = new MessageCancel(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }

@@ -1,5 +1,10 @@
 package com.dai.form.Quan_Ly_Danh_Muc;
 
+import com.dai.dialog.MessageCancel;
+import com.dai.dialog.MessageDone;
+import com.dai.dialog.MessageThongBao;
+import com.dai.main.MainAdmin;
+import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -75,8 +80,15 @@ public class Panel_Them_Danh_Muc extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel4.setText("Mô tả");
 
+        bttn_ThemDanhMuc.setBackground(new java.awt.Color(250, 250, 250));
         bttn_ThemDanhMuc.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        bttn_ThemDanhMuc.setForeground(new java.awt.Color(0, 0, 0));
         bttn_ThemDanhMuc.setText("Thêm");
+        bttn_ThemDanhMuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bttn_ThemDanhMucMouseReleased(evt);
+            }
+        });
         bttn_ThemDanhMuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttn_ThemDanhMucActionPerformed(evt);
@@ -169,10 +181,41 @@ public class Panel_Them_Danh_Muc extends javax.swing.JPanel {
 
     private void bttn_ThemDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_ThemDanhMucActionPerformed
         // TODO add your handling code here:
-        //BUG mota lai thanh tendanh muc va lap lai
-        ChucNang_Panel_Danh_Muc.themDanhMuc(txt_TenDanhMuc.getText(), (File) selectedFile, txa_MoTa.getText());
+        if (showMessageBanCoMuon("Bạn có muốn thêm danh mục?")) {
+//            ChucNang_Panel_Danh_Muc.themDanhMuc(txt_TenDanhMuc.getText(), (File) selectedFile, txa_MoTa.getText());
+//            showMessageDone("Thêm danh mục thành công.");
+            if (txt_TenDanhMuc.getText().isEmpty()) {
+                showMessage("Không được để trống tên danh mục!");
+            } if (jButton1.getIcon() == null) {
+                showMessage("Không được để trống ảnh!");
+            } else {
+                ChucNang_Panel_Danh_Muc.themDanhMuc(txt_TenDanhMuc.getText(), (File) selectedFile, txa_MoTa.getText());
+                showMessageDone("Thêm danh mục thành công.");
+            }
+        }
     }//GEN-LAST:event_bttn_ThemDanhMucActionPerformed
 
+    private void bttn_ThemDanhMucMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttn_ThemDanhMucMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttn_ThemDanhMucMouseReleased
+
+    private boolean showMessage(String message) {
+        MessageCancel obj = new MessageCancel(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
+
+    private boolean showMessageBanCoMuon(String message) {
+        MessageThongBao obj = new MessageThongBao(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
+
+    private boolean showMessageDone(String message) {
+        MessageDone obj = new MessageDone(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttn_ThemAnh;

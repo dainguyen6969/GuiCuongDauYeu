@@ -1,6 +1,8 @@
 package com.dai.form.Tao_Quan_Tri_Vien;
 
-import com.dai.dialog.Message;
+import com.dai.dialog.MessageCancel;
+import com.dai.dialog.MessageDone;
+import com.dai.dialog.MessageThongBao;
 import com.dai.main.MainAdmin;
 
 /**
@@ -124,16 +126,32 @@ public class Panel_ThemQuanTriVien extends javax.swing.JPanel {
     private void bttn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_ThemActionPerformed
         // TODO add your handling code here:
         //Thieu validate them quan tri vien
-        if (txt_Password.getText().equals(txt_NhapLaiPassword.getText())) {
-            ChucNang_QuanTriVien.themQuanTriVien(txt_TenAdmin.getText(), txt_TenDangNhap.getText(), txt_Password.getText());
-        } else {
-            showMessage("Mật khẩu không trùng khớp!");
-        }
 
+        if (showMessageBanCoMuon("Bạn có muốn thêm quản trị viên?")) {
+            if (txt_Password.getText().equals(txt_NhapLaiPassword.getText())) {
+                ChucNang_QuanTriVien.themQuanTriVien(txt_TenAdmin.getText(), txt_TenDangNhap.getText(), txt_Password.getText());
+                showMessageDone("Thêm thành công.");
+
+            } else {
+                showMessage("Mật khẩu không trùng khớp!");
+            }
+        }
     }//GEN-LAST:event_bttn_ThemActionPerformed
 
     private boolean showMessage(String message) {
-        Message obj = new Message(MainAdmin.getFrames()[0], true);
+        MessageCancel obj = new MessageCancel(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
+
+    private boolean showMessageBanCoMuon(String message) {
+        MessageThongBao obj = new MessageThongBao(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
+
+    private boolean showMessageDone(String message) {
+        MessageDone obj = new MessageDone(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }

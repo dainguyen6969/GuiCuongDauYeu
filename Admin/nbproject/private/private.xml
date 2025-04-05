@@ -16,7 +16,6 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/event/EventMenu.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/event/EventShowPopupMenu.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/Menu.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/MainAdmin.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Form1.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/header.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/Profile.java</file>
@@ -58,7 +57,7 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/Profile.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/TableCellAction.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/TableHeader.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/dialog/Message.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/dialog/MessageCancel.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/ModelProfile.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/noticeboard/NoticeBoard.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/HanhDong.java</file>
@@ -86,19 +85,20 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_User/Form_ChiTiet_Nguoi_Ban.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Duyet_Nguoi_Ban/Panel_Duyet_Nguoi_Ban1.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_Danh_Muc/Panel_Them_Danh_Muc.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/Menu_SuperAdmin.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/icon/user.png</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/MainSuperAdmin.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/MainForm.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Tao_Quan_Tri_Vien/Panel_DanhSachQuanTriVien.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Tao_Quan_Tri_Vien/ChucNang_QuanTriVien.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/model/Model_Quan_Tri_Vien.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/EventAction/EventActionQuanTriVien.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Tao_Quan_Tri_Vien/Panel_ThemQuanTriVien.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/TableCellActionDanhMuc.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/DangNhap.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/dialog/MessageThongBao.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_Danh_Muc/Panel_DanhMuc.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/MainAdmin.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/MainSuperAdmin.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/DangNhap.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Tao_Quan_Tri_Vien/Panel_ThemQuanTriVien.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Tao_Quan_Tri_Vien/Panel_DanhSachQuanTriVien.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/component/Menu_SuperAdmin.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/dialog/MessageDone.java</file>
         </group>
     </open-files>
 </project-private>

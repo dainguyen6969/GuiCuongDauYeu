@@ -4,9 +4,6 @@
  */
 package com.dai.main;
 
-import com.dai.component.header;
-import com.dai.dialog.Message;
-import com.mysql.cj.Messages;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -128,43 +125,23 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void bttn_DangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_DangNhapActionPerformed
         // TODO add your handling code here:
-        String tendangnhap = txt_TenDangNhap.getText();
-        if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 4, "Hoạt động")) {
-            if (txt_TenDangNhap.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui long khong de trong ten dang nhap");
-            } else {
-                new MainAdmin().setVisible(true);
-            }
-        } else if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 5, "Hoạt động")) {
-            if (txt_TenDangNhap.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui long khong de trong ten dang nhap");
-            } else {
-                new MainSuperAdmin().setVisible(true);
-            }
+        if (txt_TenDangNhap.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống tên đăng nhập.", "Thông Báo", JOptionPane.CANCEL_OPTION);
         } else if (txt_MatKhau.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Vui long khong der trong mat khau");
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống mật khẩu.", "Thông Báo", JOptionPane.CANCEL_OPTION);
         } else {
-            JOptionPane.showMessageDialog(this, "Dang nhap that bai.");
+
+            if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 4, "Hoạt động")) {
+                new MainAdmin().setVisible(true);
+            } else if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 5, "Hoạt động")) {
+                new MainSuperAdmin().setVisible(true);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thất bại.", "Thông Báo", JOptionPane.CANCEL_OPTION);
+            }
+
         }
-
-//        if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 4, "Hoạt động")) {
-//            new MainAdmin().setVisible(true);
-//        } else if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 5, "Hoạt động")) {
-//            new MainSuperAdmin().setVisible(true);
-//        } else if (txt_TenDangNhap.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Vui long khong de trong ten dang nhap");
-//        } else if (txt_MatKhau.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Vui long khong der trong mat khau");
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Dang nhap that bai.");
-//        }
     }//GEN-LAST:event_bttn_DangNhapActionPerformed
-
-    private boolean showMessage(String message) {
-        Message obj = new Message(DangNhap.getFrames()[0], true);
-        obj.showMessage(message);
-        return obj.isOk();
-    }
 
     /**
      * @param args the command line arguments

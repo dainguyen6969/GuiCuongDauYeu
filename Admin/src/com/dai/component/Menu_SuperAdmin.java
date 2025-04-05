@@ -68,7 +68,7 @@ public class Menu_SuperAdmin extends javax.swing.JPanel {
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/realtor.png")), "Duyệt người bán"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/categories.png")), "Quản lí danh mục", "Tất cả danh mục", "Thêm danh mục"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/group.png")), "Quản lí người dùng", "Người mua", "Người bán"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/user.png")), "Quản lí người dùng", "Danh sách các quản trị", "Thêm quản trị"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/user.png")), "Quản trị viên", "Danh sách các quản trị", "Thêm quản trị"));
 
 //        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/7.png")), "Library", "Menu 001", "Menu 002", "Menu 003"));
 //        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/8.png")), "Holiday", "Menu 001", "Menu 002", "Menu 003"));

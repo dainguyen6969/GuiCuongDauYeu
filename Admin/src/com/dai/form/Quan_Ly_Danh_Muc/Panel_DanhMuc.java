@@ -4,7 +4,7 @@
  */
 package com.dai.form.Quan_Ly_Danh_Muc;
 
-import com.dai.dialog.Message;
+import com.dai.dialog.MessageCancel;
 import com.dai.dialog.MessageThongBao;
 import com.dai.main.MainAdmin;
 import com.dai.model.Model_Danh_Muc;
@@ -82,7 +82,7 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
     }
 
     private boolean showMessage(String message) {
-        Message obj = new Message(MainAdmin.getFrames()[0], true);
+        MessageCancel obj = new MessageCancel(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }

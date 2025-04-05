@@ -7,7 +7,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
-public class MessageThongBao extends javax.swing.JDialog {
+public class MessageCancel extends javax.swing.JDialog {
 
     public boolean isOk() {
         return ok;
@@ -21,10 +21,10 @@ public class MessageThongBao extends javax.swing.JDialog {
     private final Animator animator;
     private boolean show = true;
 
-    public MessageThongBao(java.awt.Frame parent, boolean modal) {
+    public MessageCancel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        lbIcon.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.HELP_OUTLINE, 60, new Color(254, 223, 86), new Color(143, 113, 67)));
+        lbIcon.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.CANCEL, 60, new Color(254, 86, 96), new Color(113, 74, 67)));
         setOpacity(0f);
         getContentPane().setBackground(Color.WHITE);
         TimingTarget target = new TimingTargetAdapter() {
@@ -63,8 +63,7 @@ public class MessageThongBao extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         lbMessage = new javax.swing.JLabel();
         lbIcon = new javax.swing.JLabel();
-        bttn_Cancel = new com.dai.swing.Button();
-        bttn_Ok = new com.dai.swing.Button();
+        button1 = new com.dai.swing.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -78,17 +77,10 @@ public class MessageThongBao extends javax.swing.JDialog {
 
         lbIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        bttn_Cancel.setText("Cancel");
-        bttn_Cancel.addActionListener(new java.awt.event.ActionListener() {
+        button1.setText("Cancel");
+        button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttn_CancelActionPerformed(evt);
-            }
-        });
-
-        bttn_Ok.setText("Ok");
-        bttn_Ok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttn_OkActionPerformed(evt);
+                button1ActionPerformed(evt);
             }
         });
 
@@ -103,10 +95,7 @@ public class MessageThongBao extends javax.swing.JDialog {
                         .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bttn_Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bttn_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -117,9 +106,7 @@ public class MessageThongBao extends javax.swing.JDialog {
                     .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttn_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bttn_Ok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
@@ -138,16 +125,10 @@ public class MessageThongBao extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bttn_OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_OkActionPerformed
-        ok = true;
-        closeMenu();
-    }//GEN-LAST:event_bttn_OkActionPerformed
-
-    private void bttn_CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_CancelActionPerformed
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        ok = false;
         closeMenu();
-    }//GEN-LAST:event_bttn_CancelActionPerformed
+    }//GEN-LAST:event_button1ActionPerformed
 
     private void closeMenu() {
         if (animator.isRunning()) {
@@ -158,8 +139,7 @@ public class MessageThongBao extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.dai.swing.Button bttn_Cancel;
-    private com.dai.swing.Button bttn_Ok;
+    private com.dai.swing.Button button1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbIcon;
     private javax.swing.JLabel lbMessage;

@@ -1,6 +1,6 @@
 package com.dai.form.Quan_Ly_User;
 
-import com.dai.dialog.Message;
+import com.dai.dialog.MessageCancel;
 import com.dai.dialog.MessageThongBao;
 import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
 import com.dai.main.MainAdmin;
@@ -80,7 +80,7 @@ public class Panel_KhachHang extends javax.swing.JPanel {
     }
 
     private boolean showMessage(String message) {
-        Message obj = new Message(MainAdmin.getFrames()[0], true);
+        MessageCancel obj = new MessageCancel(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }
