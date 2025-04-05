@@ -20,7 +20,7 @@ import com.dai.swing.MenuItem;
  *
  * @author ThinkPad
  */
-public class Menu extends javax.swing.JPanel {
+public class Menu_SuperAdmin extends javax.swing.JPanel {
 
     public boolean isShowMenu() {
         return showMenu;
@@ -51,7 +51,7 @@ public class Menu extends javax.swing.JPanel {
     private boolean enableMenu = true;
     private boolean showMenu = true;
 
-    public Menu() {
+    public Menu_SuperAdmin() {
         initComponents();
         setOpaque(false);
         sp.getViewport().setOpaque(false);
@@ -67,7 +67,9 @@ public class Menu extends javax.swing.JPanel {
     public void initMenuItem() {
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/realtor.png")), "Duyệt người bán"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/categories.png")), "Quản lí danh mục", "Tất cả danh mục", "Thêm danh mục"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/group.png")), "Quản lí người dùng","Người mua","Người bán"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/group.png")), "Quản lí người dùng", "Người mua", "Người bán"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/user.png")), "Quản lí người dùng", "Danh sách các quản trị", "Thêm quản trị"));
+
 //        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/7.png")), "Library", "Menu 001", "Menu 002", "Menu 003"));
 //        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/8.png")), "Holiday", "Menu 001", "Menu 002", "Menu 003"));
 //        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/dai/icon/9.png")), "Calendar", "Menu 001", "Menu 002", "Menu 003"));
@@ -97,12 +99,11 @@ public class Menu extends javax.swing.JPanel {
                             new MenuAnimation(layout, com).closeMenu();
                         }
                         return true;
-                    } else{ //Qua sai ở đây tìm lỗi sửa lòi trĩ, NGÀY MAI NHỚ COMMENT CÁC CÂU LỆNH CỦA POPUP!!!!  
-                         eventShowPopup.showPopup(com);
+                    } else { //Qua sai ở đây tìm lỗi sửa lòi trĩ, NGÀY MAI NHỚ COMMENT CÁC CÂU LỆNH CỦA POPUP!!!!  
+                        eventShowPopup.showPopup(com);
                     }
-                } 
-                    
-                
+                }
+
                 return false;
             }
         };

@@ -8,24 +8,17 @@ import com.dai.component.Menu;
 import com.dai.component.header;
 import com.dai.event.EventMenuSelected;
 import com.dai.event.EventShowPopupMenu;
-import com.dai.form.Duyet_Nguoi_Ban.Panel_Duyet_Nguoi_Ban;
-import com.dai.form.Form1;
-import com.dai.form.Form_Home;
-import com.dai.form.Form_QuanLiGiangVien;
+import com.dai.form.Duyet_Nguoi_Ban.Panel_Duyet_Nguoi_Ban1;
 import com.dai.form.MainForm;
 import com.dai.form.Quan_Ly_User.Panel_KhachHang;
 import com.dai.form.Quan_Ly_User.Panel_NguoiBan;
 import com.dai.form.Quan_Ly_Danh_Muc.Panel_DanhMuc;
+import com.dai.form.Quan_Ly_Danh_Muc.Panel_Them_Danh_Muc;
 import com.dai.swing.MenuItem;
 import com.dai.swing.MenuPopup;
 import com.dai.swing.icon.GoogleMaterialDesignIcons;
 import com.dai.swing.icon.IconFontSwing;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.PopupMenu;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import net.miginfocom.swing.MigLayout;
@@ -37,7 +30,7 @@ import org.jdesktop.animation.timing.TimingTargetAdapter;
  *
  * @author ThinkPad
  */
-public class Main extends javax.swing.JFrame {
+public class MainAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
@@ -48,7 +41,7 @@ public class Main extends javax.swing.JFrame {
     private MainForm form;
     private Animator animator;
 
-    public Main() {
+    public MainAdmin() {
         initComponents();
         init();
         setLocationRelativeTo(null);
@@ -65,9 +58,14 @@ public class Main extends javax.swing.JFrame {
             public void menuSelected(int menuIndex, int subMenuIndex) {
                 System.out.println("Menu index: " + menuIndex + " SubMenu Index " + subMenuIndex);
                 if (menuIndex == 0) {
-                    form.showForm(new Panel_Duyet_Nguoi_Ban());
-                }else if (menuIndex == 1) {
+                    form.showForm(new Panel_Duyet_Nguoi_Ban1());
+                } else if (menuIndex == 1) {
                     form.showForm(new Panel_DanhMuc());
+                    if (subMenuIndex == 0) {
+                        form.showForm(new Panel_DanhMuc());
+                    } else if (subMenuIndex == 1) {
+                        form.showForm(new Panel_Them_Danh_Muc());
+                    }
                 } else if (menuIndex == 2) {
                     form.showForm(new Panel_KhachHang());
                     if (subMenuIndex == 0) {
@@ -75,7 +73,7 @@ public class Main extends javax.swing.JFrame {
                     } else if (subMenuIndex == 1) {
                         form.showForm(new Panel_NguoiBan());
                     }
-                } 
+                }
             }
         });
 
@@ -83,9 +81,9 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void showPopup(Component com) { //Câu lệnh này để hiện vị trí của popup ở đâu
                 MenuItem item = (MenuItem) com;
-                MenuPopup popup = new MenuPopup(Main.this, item.getIndex(), item.getEventSelected(), item.getMenu().getSubMenu());
-                int x = Main.this.getX() + 59;
-                int y = Main.this.getY() + com.getY() + 126;
+                MenuPopup popup = new MenuPopup(MainAdmin.this, item.getIndex(), item.getEventSelected(), item.getMenu().getSubMenu());
+                int x = MainAdmin.this.getX() + 59;
+                int y = MainAdmin.this.getY() + com.getY() + 126;
                 popup.setLocation(x, y);
                 popup.setVisible(true);
             }
@@ -200,20 +198,21 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new MainAdmin().setVisible(true);
             }
         });
     }

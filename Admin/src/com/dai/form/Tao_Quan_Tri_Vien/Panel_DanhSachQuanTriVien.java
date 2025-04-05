@@ -1,77 +1,86 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package com.dai.form.Duyet_Nguoi_Ban;
+package com.dai.form.Tao_Quan_Tri_Vien;
 
 import com.dai.form.Quan_Ly_User.*;
 import com.dai.dialog.Message;
-import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
-import com.dai.form.Test;
-import com.dai.main.Main;
-import com.dai.model.ModelStudent;
-import com.dai.model.Model_Khach_Hang;
-import com.dai.model.model_Duyet_Nguoi_Ban;
-import com.dai.swing.table.EventAction.EventAction;
-import com.dai.swing.table.EventAction.EventActionDuyetNguoiBan;
+import com.dai.dialog.MessageThongBao;
+import com.dai.main.MainAdmin;
+import com.dai.model.Model_Quan_Tri_Vien;
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
-import com.dai.swing.table.EventAction.EventActionNguoiMua;
+import com.dai.swing.table.EventAction.EventActionQuanTriVien;
 
 /**
  *
  * @author dainguyen
  */
-public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
+public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
 
     /**
      * Creates new form Panel_KhachHang
      */
-    EventActionDuyetNguoiBan evenActionDuyetNguoiBan;
+    EventActionQuanTriVien eventActionQuanTriVien;
 
-    public Panel_Duyet_Nguoi_Ban() {
+    public Panel_DanhSachQuanTriVien() {
         initComponents();
-        tbl_Duyet_Nguoi_Ban.fixTable(jScrollPane2);
+        tbl_QuanTriVien.fixTable(jScrollPane1);
         setOpaque(false);
         initTableNguoiMuaData();
-        fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAll());
+        fillTableData(ChucNang_QuanTriVien.getAll());
     }
 
     private void initTableNguoiMuaData() {
-        evenActionDuyetNguoiBan = new EventActionDuyetNguoiBan() {
+        eventActionQuanTriVien = new EventActionQuanTriVien() {
             @Override
-            public void duyet(model_Duyet_Nguoi_Ban duyetNguoiBan) {
-                ChucNang_Panel_Duyet_Nguoi_Ban.duyet_Nguoi_Ban(
-                        duyetNguoiBan.getID_Nguoi_Mua(),
-                        duyetNguoiBan.getTen_Shop(),
-                        duyetNguoiBan.getDia_Chi_Lay_Hang(),
-                        duyetNguoiBan.getSo_Dien_Thoai(),
-                        duyetNguoiBan.getEmail());
+            public void hoatDong(Model_Quan_Tri_Vien quanTriVien) {
+                //Mai nhớ làm nốt sự kiện cho quản trị viên
+                if (showMessageBanCoMuon("Hoạt động trở lại của quản trị viên " + quanTriVien.getTenAdmin())) {
+                    ChucNang_QuanTriVien.UpdateTrangThaiHoatDong(quanTriVien.getIdAdmin());
+                    fillTableData(ChucNang_QuanTriVien.getAll());
+
+                    if (quanTriVien.getTrangThai().equals("Hoạt động")) {
+                        showMessage("Quản trị viên đang hoạt động.");
+                    }
+
+                } else {
+                    System.out.println("User click Cancel");
+                }
             }
 
             @Override
-            public void huyDuyet(model_Duyet_Nguoi_Ban duyetNguoiBan) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            public void dungHoatDong(Model_Quan_Tri_Vien quanTriVien) {
+                if (showMessageBanCoMuon("Dừng hoạt động quản trị viên " + quanTriVien.getTenAdmin())) {
+                    ChucNang_QuanTriVien.UpdateTrangThaiDungHoatDong(quanTriVien.getIdAdmin());
+                    fillTableData(ChucNang_QuanTriVien.getAll());
+                    
+                    if (quanTriVien.getTrangThai().equals("Dừng hoạt động")) {
+                        showMessage("Quản trị viên đã dừng hoạt động.");
+                    }
+                    
+                } else {
+                    System.out.println("User click Cancel");
+                }
             }
         };
 
     }
 
-    public void fillTableData(ArrayList<model_Duyet_Nguoi_Ban> dnb) {
-        DefaultTableModel model = (DefaultTableModel) tbl_Duyet_Nguoi_Ban.getModel();
+    public void fillTableData(ArrayList<Model_Quan_Tri_Vien> qtv) {
+        DefaultTableModel model = (DefaultTableModel) tbl_QuanTriVien.getModel();
         model.setRowCount(0);
-        for (model_Duyet_Nguoi_Ban duyet_Nguoi_Ban : dnb) {
-            model.addRow(new model_Duyet_Nguoi_Ban(duyet_Nguoi_Ban.getID_Nguoi_Mua(), duyet_Nguoi_Ban.getTen_Shop(),duyet_Nguoi_Ban.getDia_Chi_Lay_Hang(), duyet_Nguoi_Ban.getSo_Dien_Thoai(), duyet_Nguoi_Ban.getEmail(), duyet_Nguoi_Ban.getTrang_Thai()).toRowTable(evenActionDuyetNguoiBan));
+        for (Model_Quan_Tri_Vien model_Quan_Tri_Vien : qtv) {
+            model.addRow(new Model_Quan_Tri_Vien(model_Quan_Tri_Vien.getIdAdmin(), model_Quan_Tri_Vien.getTenAdmin(), model_Quan_Tri_Vien.getTrangThai(), model_Quan_Tri_Vien.getNgayTao()).toRowTable(eventActionQuanTriVien));
         }
-
     }
 
     private boolean showMessage(String message) {
-        Message obj = new Message(Main.getFrames()[0], true);
+        Message obj = new Message(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
+
+    private boolean showMessageBanCoMuon(String message) {
+        MessageThongBao obj = new MessageThongBao(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }
@@ -81,11 +90,11 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbl_Duyet_Nguoi_Ban = new com.dai.swing.table.Table_DuyetNguoiBan();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_QuanTriVien = new com.dai.swing.table.Table();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbl_VutGay = new javax.swing.JLabel();
+        lbl_DungHoatDong = new javax.swing.JLabel();
         lbl_TatCa = new javax.swing.JLabel();
         lbl_HoatDong = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -98,59 +107,59 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tbl_Duyet_Nguoi_Ban.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_QuanTriVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tên cửa hàng", "ID Người mua", "Email", "Số điện thoại", "Trạng thái", "Thao tác"
+                "Mã quản trị", "Tên quản trị", "Trạng thái", "Ngày tạo", "Thao tác"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tbl_Duyet_Nguoi_Ban.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_QuanTriVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_Duyet_Nguoi_BanMouseClicked(evt);
+                tbl_QuanTriVienMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tbl_Duyet_Nguoi_Ban);
-        if (tbl_Duyet_Nguoi_Ban.getColumnModel().getColumnCount() > 0) {
-            tbl_Duyet_Nguoi_Ban.getColumnModel().getColumn(4).setMaxWidth(100);
-            tbl_Duyet_Nguoi_Ban.getColumnModel().getColumn(5).setMaxWidth(100);
+        jScrollPane1.setViewportView(tbl_QuanTriVien);
+        if (tbl_QuanTriVien.getColumnModel().getColumnCount() > 0) {
+            tbl_QuanTriVien.getColumnModel().getColumn(4).setMaxWidth(100);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("Người mua");
+        jLabel1.setText("Danh sách quản trị");
 
-        lbl_VutGay.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        lbl_VutGay.setText("Vụt gậy");
-        lbl_VutGay.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbl_DungHoatDong.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        lbl_DungHoatDong.setText("Dừng hoạt động");
+        lbl_DungHoatDong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_DungHoatDongMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbl_VutGayMousePressed(evt);
+                lbl_DungHoatDongMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lbl_VutGayMouseReleased(evt);
+                lbl_DungHoatDongMouseReleased(evt);
             }
         });
 
@@ -220,7 +229,7 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
                         .addGap(1, 1, 1)
                         .addComponent(jLabel6)
                         .addGap(27, 27, 27)
-                        .addComponent(lbl_VutGay)
+                        .addComponent(lbl_DungHoatDong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7))
                     .addComponent(jLabel1))
@@ -241,7 +250,7 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_TatCa)
                     .addComponent(lbl_HoatDong)
-                    .addComponent(lbl_VutGay)
+                    .addComponent(lbl_DungHoatDong)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
@@ -276,12 +285,12 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
 
     private void lbl_TatCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_TatCaMouseClicked
         // TODO add your handling code here:
-        //fillTableData(ChucNang_Panel_Khach_hang.getAll());
+        fillTableData(ChucNang_QuanTriVien.getAll());
     }//GEN-LAST:event_lbl_TatCaMouseClicked
 
     private void lbl_HoatDongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HoatDongMouseClicked
         // TODO add your handling code here:
-        //fillTableData(ChucNang_Panel_Khach_hang.getAllHoatDong());
+        fillTableData(ChucNang_QuanTriVien.getAllHoatDong());
     }//GEN-LAST:event_lbl_HoatDongMouseClicked
 
     private void lbl_HoatDongMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HoatDongMouseExited
@@ -309,24 +318,29 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
         lbl_TatCa.setForeground(Color.red);
     }//GEN-LAST:event_lbl_TatCaMousePressed
 
-    private void lbl_VutGayMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_VutGayMouseReleased
+    private void lbl_DungHoatDongMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_DungHoatDongMouseReleased
         // TODO add your handling code here:
-        //fillTableData(ChucNang_Panel_Khach_hang.getAllVutGay());
-        lbl_VutGay.setForeground(Color.black);
-    }//GEN-LAST:event_lbl_VutGayMouseReleased
+        fillTableData(ChucNang_QuanTriVien.getAllHoatDong());
+        lbl_DungHoatDong.setForeground(Color.black);
+    }//GEN-LAST:event_lbl_DungHoatDongMouseReleased
 
-    private void lbl_VutGayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_VutGayMousePressed
+    private void lbl_DungHoatDongMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_DungHoatDongMousePressed
         // TODO add your handling code here:
-        lbl_VutGay.setForeground(Color.red);
-    }//GEN-LAST:event_lbl_VutGayMousePressed
+        lbl_DungHoatDong.setForeground(Color.red);
+    }//GEN-LAST:event_lbl_DungHoatDongMousePressed
 
-    private void tbl_Duyet_Nguoi_BanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_Duyet_Nguoi_BanMouseClicked
+    private void tbl_QuanTriVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_QuanTriVienMouseClicked
         // TODO add your handling code here:
-        int selected = tbl_Duyet_Nguoi_Ban.getSelectedRow();
-        String ma_Khach_hang = tbl_Duyet_Nguoi_Ban.getValueAt(selected, 1).toString();
-        Form_ChiTiet_Duyet_Nguoi_Ban form_CT_KH = new Form_ChiTiet_Duyet_Nguoi_Ban(ma_Khach_hang);
-        form_CT_KH.setVisible(true);
-    }//GEN-LAST:event_tbl_Duyet_Nguoi_BanMouseClicked
+//        int selected = tbl_QuanTriVien.getSelectedRow();
+//        String ma_Khach_hang = tbl_QuanTriVien.getValueAt(selected, 1).toString();
+//        Form_ChiTiet_KhachHang form_CT_KH = new Form_ChiTiet_KhachHang(ma_Khach_hang);
+//        form_CT_KH.setVisible(true);
+    }//GEN-LAST:event_tbl_QuanTriVienMouseClicked
+
+    private void lbl_DungHoatDongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_DungHoatDongMouseClicked
+        // TODO add your handling code here:
+        fillTableData(ChucNang_QuanTriVien.getAllNgungHoatDong());
+    }//GEN-LAST:event_lbl_DungHoatDongMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -337,11 +351,11 @@ public class Panel_Duyet_Nguoi_Ban extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_DungHoatDong;
     private javax.swing.JLabel lbl_HoatDong;
     private javax.swing.JLabel lbl_TatCa;
-    private javax.swing.JLabel lbl_VutGay;
-    private com.dai.swing.table.Table_DuyetNguoiBan tbl_Duyet_Nguoi_Ban;
+    private com.dai.swing.table.Table tbl_QuanTriVien;
     private javax.swing.JTextField txt_TimKiem;
     // End of variables declaration//GEN-END:variables
 

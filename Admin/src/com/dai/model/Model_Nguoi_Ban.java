@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.dai.model;
-
-import com.dai.swing.table.EventAction.EventActionNguoiMua;
 import com.dai.swing.table.ModelAction;
 import com.dai.swing.table.EventAction.EventActionNguoiBan;
 
@@ -13,6 +11,14 @@ import com.dai.swing.table.EventAction.EventActionNguoiBan;
  * @author dainguyen
  */
 public class Model_Nguoi_Ban {
+
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
+    }
 
     public String getID_Nguoi_Ban() {
         return ID_Nguoi_Ban;
@@ -84,6 +90,7 @@ public class Model_Nguoi_Ban {
     private String So_Dien_Thoai;
     private String Ngay_Tham_Gia;
     private String Trang_Thai;
+    private String cccd;
     private String Email;
 
     public Model_Nguoi_Ban() {
@@ -97,7 +104,7 @@ public class Model_Nguoi_Ban {
 
     }
 
-    public Model_Nguoi_Ban(String ID_Nguoi_Ban, String ID_Nguoi_Mua, String Ten_Cua_Hang, String Dia_Chi, String So_Dien_Thoai, String Ngay_Tham_Gia, String Trang_Thai, String Email) {
+    public Model_Nguoi_Ban(String ID_Nguoi_Ban, String ID_Nguoi_Mua, String Ten_Cua_Hang, String Dia_Chi, String So_Dien_Thoai, String Ngay_Tham_Gia, String Trang_Thai, String cccd, String Email) {
         this.ID_Nguoi_Ban = ID_Nguoi_Ban;
         this.ID_Nguoi_Mua = ID_Nguoi_Mua;
         this.Ten_Cua_Hang = Ten_Cua_Hang;
@@ -105,6 +112,7 @@ public class Model_Nguoi_Ban {
         this.So_Dien_Thoai = So_Dien_Thoai;
         this.Ngay_Tham_Gia = Ngay_Tham_Gia;
         this.Trang_Thai = Trang_Thai;
+        this.cccd = cccd;
         this.Email = Email;
     }
 

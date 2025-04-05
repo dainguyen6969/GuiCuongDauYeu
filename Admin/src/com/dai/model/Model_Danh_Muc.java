@@ -1,11 +1,8 @@
 package com.dai.model;
 
-import com.dai.swing.table.EventAction.EventAction;
 import com.dai.swing.table.EventAction.EventActionDanhMuc;
-import com.dai.swing.table.EventAction.EventActionNguoiBan;
 import com.dai.swing.table.ModelAction;
 import com.dai.swing.table.ModelProfile;
-import java.text.DecimalFormat;
 import javax.swing.Icon;
 
 public class Model_Danh_Muc {
@@ -24,6 +21,7 @@ public class Model_Danh_Muc {
     private Icon AnhDanhMuc;
     private String TrangThai;
     private int SoLuongSanPham;
+    
     public String getID_Danh_Muc() {
         return ID_Danh_Muc;
     }
@@ -87,6 +85,6 @@ public class Model_Danh_Muc {
     }
 
     public Object[] toRowTable(EventActionDanhMuc event) {
-        return new Object[]{new ModelProfile(AnhDanhMuc, Ten_Danh_Muc), ID_Danh_Muc, SoLuongSanPham,TrangThai, new ModelAction(this, (event))};
+        return new Object[]{new ModelProfile(AnhDanhMuc, Ten_Danh_Muc), ID_Danh_Muc, SoLuongSanPham,TrangThai, new ModelAction(this, event)};
     }
 }

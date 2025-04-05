@@ -14,6 +14,22 @@ import com.dai.swing.table.ModelAction;
  */
 public class model_Duyet_Nguoi_Ban {
 
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
+    }
+
+    public String getNgay_Gui_Duyet() {
+        return ngay_Gui_Duyet;
+    }
+
+    public void setNgay_Gui_Duyet(String ngay_Gui_Duyet) {
+        this.ngay_Gui_Duyet = ngay_Gui_Duyet;
+    }
+
     public String getTrang_Thai() {
         return Trang_Thai;
     }
@@ -77,11 +93,33 @@ public class model_Duyet_Nguoi_Ban {
     private String Email;
     private String Dia_Chi_Lay_Hang;
     private String Trang_Thai;
+    private String cccd;
+    private String ngay_Gui_Duyet;
+    
 
     public model_Duyet_Nguoi_Ban() {
     }
 
-    public model_Duyet_Nguoi_Ban(String ID_Duyet_Nguoi_Ban, String ID_Nguoi_Mua, String Ten_Shop, String So_Dien_Thoai, String Email, String Dia_Chi_Lay_Hang, String Trang_Thai) {
+    public model_Duyet_Nguoi_Ban(String ID_Nguoi_Mua, String Ten_Shop, String Dia_Chi_Lay_Hang, String idDuyetNguoiBan, String cccd, String So_Dien_Thoai, String Email, String Trang_Thai) {
+        this.ID_Nguoi_Mua = ID_Nguoi_Mua;
+        this.Ten_Shop = Ten_Shop;
+        this.So_Dien_Thoai = So_Dien_Thoai;
+        this.Email = Email;
+        this.Dia_Chi_Lay_Hang = Dia_Chi_Lay_Hang;
+        this.ID_Duyet_Nguoi_Ban = idDuyetNguoiBan;
+        this.cccd = cccd;
+        this.Trang_Thai = Trang_Thai;
+    }
+
+//    public model_Duyet_Nguoi_Ban(String Ten_Shop, String ID_Nguoi_Mua, String Email, String So_Dien_Thoai, String Trang_Thai) {
+//        this.Ten_Shop = Ten_Shop;
+//        this.ID_Nguoi_Mua = ID_Nguoi_Mua;
+//        this.So_Dien_Thoai = So_Dien_Thoai;
+//        this.Email = Email;
+//        this.Trang_Thai = Trang_Thai;
+//    }
+
+    public model_Duyet_Nguoi_Ban(String ID_Duyet_Nguoi_Ban, String ID_Nguoi_Mua, String Ten_Shop, String So_Dien_Thoai, String Email, String Dia_Chi_Lay_Hang, String Trang_Thai, String cccd, String ngay_Gui_Duyet) {
         this.ID_Duyet_Nguoi_Ban = ID_Duyet_Nguoi_Ban;
         this.ID_Nguoi_Mua = ID_Nguoi_Mua;
         this.Ten_Shop = Ten_Shop;
@@ -89,29 +127,16 @@ public class model_Duyet_Nguoi_Ban {
         this.Email = Email;
         this.Dia_Chi_Lay_Hang = Dia_Chi_Lay_Hang;
         this.Trang_Thai = Trang_Thai;
+        this.cccd = cccd;
+        this.ngay_Gui_Duyet = ngay_Gui_Duyet;
     }
 
-    public model_Duyet_Nguoi_Ban(String ID_Nguoi_Mua, String Ten_Shop, String Dia_Chi_Lay_Hang, String So_Dien_Thoai, String Email, String Trang_Thai) {
-        this.ID_Nguoi_Mua = ID_Nguoi_Mua;
-        this.Ten_Shop = Ten_Shop;
-        this.So_Dien_Thoai = So_Dien_Thoai;
-        this.Email = Email;
-        this.Dia_Chi_Lay_Hang = Dia_Chi_Lay_Hang;
-        this.Trang_Thai = Trang_Thai;
-    }
-
-    public model_Duyet_Nguoi_Ban(String Ten_Shop, String ID_Nguoi_Mua, String Email, String So_Dien_Thoai, String Trang_Thai) {
-        this.Ten_Shop = Ten_Shop;
-        this.ID_Nguoi_Mua = ID_Nguoi_Mua;
-        this.So_Dien_Thoai = So_Dien_Thoai;
-        this.Email = Email;
-        this.Trang_Thai = Trang_Thai;
-    }
-
+    
 //    public Object[] toRowTable(EventActionDuyetNguoiBan event) {
 //        return new Object[]{Ten_Shop, ID_Nguoi_Mua, Email, So_Dien_Thoai, Trang_Thai, new ModelAction(this, event)};
 //    }
+//    
     public Object[] toRowTable(EventActionDuyetNguoiBan event) {
-        return new Object[]{Ten_Shop, ID_Nguoi_Mua, Email, So_Dien_Thoai, Trang_Thai, new ModelAction(this, event), ID_Duyet_Nguoi_Ban, Dia_Chi_Lay_Hang};
+        return new Object[]{Ten_Shop, ID_Nguoi_Mua, Email, So_Dien_Thoai, Trang_Thai, new ModelAction(this, event), ID_Duyet_Nguoi_Ban, Dia_Chi_Lay_Hang, cccd};
     }
 }

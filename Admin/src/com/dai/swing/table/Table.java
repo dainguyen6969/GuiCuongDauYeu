@@ -1,21 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.dai.swing.table;
 
-import com.dai.form.Form_Home;
 import com.dai.scrollbar.ScrollBarCustom;
-import com.dai.swing.table.ModelAction;
-import com.dai.swing.table.ModelProfile;
-import com.dai.swing.table.Profile;
-import com.dai.swing.table.TableCellAction;
-import com.dai.swing.table.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;

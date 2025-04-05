@@ -70,7 +70,7 @@ public class HanhDong extends javax.swing.JPanel {
                 if (data.getEventDuyetNguoiBan() != null) {
                     data.getEventDuyetNguoiBan().duyet(data.getDuyetNguoiBan());
                 } else {
-                    System.out.println("Lỗi: EventActionDuyetNguoiBan chưa được khởi tạo!");
+                    System.out.println("Lỗi: EventActionQuanTriVien chưa được khởi tạo!");
                 }
             }
         });
@@ -80,11 +80,31 @@ public class HanhDong extends javax.swing.JPanel {
                 if (data.getEventDuyetNguoiBan() != null) {
                     data.getEventDuyetNguoiBan().huyDuyet(data.getDuyetNguoiBan());
                 } else {
-                    System.out.println("Lỗi: EventActionDuyetNguoiBan chưa được khởi tạo!");
+                    System.out.println("Lỗi: EventActionQuanTriVien chưa được khởi tạo!");
                 }
             }
         });
 
+        cmd_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (data.getEventQuanTriVien() != null) {
+                    data.getEventQuanTriVien().hoatDong(data.getQuanTriVien());
+                } else {
+                    System.out.println("Lỗi: EventActionQuanTriVien chưa được khởi tạo!");
+                }
+            }
+        });
+        cmd_2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (data.getEventQuanTriVien() != null) {
+                    data.getEventQuanTriVien().dungHoatDong(data.getQuanTriVien());
+                } else {
+                    System.out.println("Lỗi: EventActionQuanTriVien chưa được khởi tạo!");
+                }
+            }
+        });
     }
 
     @Override

@@ -14,17 +14,17 @@ import javax.swing.JTable;
  *
  * @author ThinkPad
  */
-public class TableCellAction extends DefaultCellEditor {
+public class TableCellActionDanhMuc extends DefaultCellEditor {
 
     private ModelAction data;
-    public TableCellAction() {
+    public TableCellActionDanhMuc() {
         super(new JCheckBox());
     }
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object o, boolean isSelected, int row, int column) {
         data = (ModelAction) o;
-        HanhDong cell = new HanhDong(data);
+        HanhDongDanhMuc cell = new HanhDongDanhMuc(data);
         cell.setBackground(new Color(239,244,255));
         return cell;
     }

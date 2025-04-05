@@ -4,23 +4,38 @@
  */
 package com.dai.swing.table;
 
-import com.dai.model.ModelGiangVien;
-import com.dai.swing.table.EventAction.EventAction;
-import com.dai.model.ModelStudent;
 import com.dai.model.Model_Danh_Muc;
 import com.dai.model.Model_Khach_Hang;
 import com.dai.model.Model_Nguoi_Ban;
+import com.dai.model.Model_Quan_Tri_Vien;
 import com.dai.model.model_Duyet_Nguoi_Ban;
 import com.dai.swing.table.EventAction.EventActionDanhMuc;
 import com.dai.swing.table.EventAction.EventActionDuyetNguoiBan;
 import com.dai.swing.table.EventAction.EventActionNguoiBan;
 import com.dai.swing.table.EventAction.EventActionNguoiMua;
+import com.dai.swing.table.EventAction.EventActionQuanTriVien;
 
 /**
  *
  * @author ThinkPad
  */
 public class ModelAction {
+
+    public EventActionQuanTriVien getEventQuanTriVien() {
+        return eventQuanTriVien;
+    }
+
+    public void setEventQuanTriVien(EventActionQuanTriVien eventQuanTriVien) {
+        this.eventQuanTriVien = eventQuanTriVien;
+    }
+
+    public Model_Quan_Tri_Vien getQuanTriVien() {
+        return quanTriVien;
+    }
+
+    public void setQuanTriVien(Model_Quan_Tri_Vien quanTriVien) {
+        this.quanTriVien = quanTriVien;
+    }
 
     public EventActionDuyetNguoiBan getEventDuyetNguoiBan() {
         return eventDuyetNguoiBan;
@@ -78,51 +93,20 @@ public class ModelAction {
         this.eventNguoiMua = eventNguoiMua;
     }
 
-    public ModelGiangVien getGiangVien() {
-        return giangVien;
-    }
-
-    public void setGiangVien(ModelGiangVien giangVien) {
-        this.giangVien = giangVien;
-    }
-
-    private ModelStudent student;
-    private EventAction event;
-    private ModelGiangVien giangVien;
     private Model_Khach_Hang khachHang;
     private EventActionNguoiMua eventNguoiMua;
+
     private EventActionNguoiBan eventNguoiBan;
     private Model_Nguoi_Ban nguoiBan;
+
     private Model_Danh_Muc danhMuc;
     private EventActionDanhMuc eventDanhMuc;
+
     private EventActionDuyetNguoiBan eventDuyetNguoiBan;
     private model_Duyet_Nguoi_Ban duyetNguoiBan;
 
-    public ModelStudent getStudent() {
-        return student;
-    }
-
-    public void setStudent(ModelStudent student) {
-        this.student = student;
-    }
-
-    public EventAction getEvent() {
-        return event;
-    }
-
-    public void setEvent(EventAction event) {
-        this.event = event;
-    }
-
-    public ModelAction(ModelStudent student, EventAction event) {
-        this.student = student;
-        this.event = event;
-    }
-
-    public ModelAction(ModelGiangVien giangVien, EventAction event) {
-        this.event = event;
-        this.giangVien = giangVien;
-    }
+    private EventActionQuanTriVien eventQuanTriVien;
+    private Model_Quan_Tri_Vien quanTriVien;
 
     public ModelAction(Model_Khach_Hang khachHang, EventActionNguoiMua event) {
         this.eventNguoiMua = event;
@@ -150,5 +134,10 @@ public class ModelAction {
     public ModelAction(model_Duyet_Nguoi_Ban duyetNguoiBan, EventActionDuyetNguoiBan event) {
         this.eventDuyetNguoiBan = event;
         this.duyetNguoiBan = duyetNguoiBan;
+    }
+
+    public ModelAction(Model_Quan_Tri_Vien quanTriVien, EventActionQuanTriVien event) {
+        this.eventQuanTriVien = event;
+        this.quanTriVien = quanTriVien;
     }
 }

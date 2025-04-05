@@ -22,23 +22,23 @@ public class HanhDongDanhMuc extends javax.swing.JPanel {
      */
     public HanhDongDanhMuc(ModelAction data) {
         initComponents();
-        cmd_Edit.addActionListener(new ActionListener() {
+        cmd_TurnOn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if (data.getEventNguoiMua() != null) {
-                    data.getEventNguoiMua().banRemoved(data.getKhachHang());
+                if (data.getEventDanhMuc() != null) {
+                    data.getEventDanhMuc().turnOn(data.getDanhMuc());
                 } else {
-                    System.out.println("Lỗi: EventActionNguoiMua chưa được khởi tạo!");
+                    System.out.println("Lỗi: EventActionDanhMuc chưa được khởi tạo!");
                 }
             }
         });
-        cmdDelete.addActionListener(new ActionListener() {
+        cmd_ShutDown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if (data.getEventNguoiMua() != null) {
-                    data.getEventNguoiMua().ban(data.getKhachHang());
+                if (data.getEventDanhMuc() != null) {
+                    data.getEventDanhMuc().shutDown(data.getDanhMuc());
                 } else {
-                    System.out.println("Lỗi: EventActionNguoiMua chưa được khởi tạo!");
+                    System.out.println("Lỗi: EventActionDanhMuc chưa được khởi tạo!");
                 }
             }
         });
@@ -61,20 +61,20 @@ public class HanhDongDanhMuc extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmd_Edit = new com.dai.swing.Button();
-        cmdDelete = new com.dai.swing.Button();
+        cmd_TurnOn = new com.dai.swing.Button();
+        cmd_ShutDown = new com.dai.swing.Button();
 
-        cmd_Edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/dai/icon/power-button.png"))); // NOI18N
-        cmd_Edit.addActionListener(new java.awt.event.ActionListener() {
+        cmd_TurnOn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/dai/icon/power-button.png"))); // NOI18N
+        cmd_TurnOn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmd_EditActionPerformed(evt);
+                cmd_TurnOnActionPerformed(evt);
             }
         });
 
-        cmdDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/dai/icon/power.png"))); // NOI18N
-        cmdDelete.addActionListener(new java.awt.event.ActionListener() {
+        cmd_ShutDown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/dai/icon/power.png"))); // NOI18N
+        cmd_ShutDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdDeleteActionPerformed(evt);
+                cmd_ShutDownActionPerformed(evt);
             }
         });
 
@@ -84,9 +84,9 @@ public class HanhDongDanhMuc extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cmd_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmd_TurnOn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmdDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmd_ShutDown, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,23 +94,23 @@ public class HanhDongDanhMuc extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmdDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmd_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmd_ShutDown, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmd_TurnOn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
+    private void cmd_ShutDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_ShutDownActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmdDeleteActionPerformed
+    }//GEN-LAST:event_cmd_ShutDownActionPerformed
 
-    private void cmd_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_EditActionPerformed
+    private void cmd_TurnOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_TurnOnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmd_EditActionPerformed
+    }//GEN-LAST:event_cmd_TurnOnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.dai.swing.Button cmdDelete;
-    private com.dai.swing.Button cmd_Edit;
+    private com.dai.swing.Button cmd_ShutDown;
+    private com.dai.swing.Button cmd_TurnOn;
     // End of variables declaration//GEN-END:variables
 }

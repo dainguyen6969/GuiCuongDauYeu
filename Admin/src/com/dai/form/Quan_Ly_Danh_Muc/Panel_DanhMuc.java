@@ -5,24 +5,13 @@
 package com.dai.form.Quan_Ly_Danh_Muc;
 
 import com.dai.dialog.Message;
-import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Khach_hang;
-import com.dai.form.Quan_Ly_User.ChucNang_User.ChucNang_Panel_Nguoi_Ban;
-import com.dai.form.Test;
-import com.dai.main.Main;
-import com.dai.model.ModelStudent;
+import com.dai.dialog.MessageThongBao;
+import com.dai.main.MainAdmin;
 import com.dai.model.Model_Danh_Muc;
-import com.dai.model.Model_Khach_Hang;
-import com.dai.model.Model_Nguoi_Ban;
-import com.dai.swing.table.EventAction.EventAction;
 import com.dai.swing.table.EventAction.EventActionDanhMuc;
-import com.dai.swing.table.EventAction.EventActionNguoiBan;
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
-import com.dai.swing.table.EventAction.EventActionNguoiMua;
 
 /**
  *
@@ -47,12 +36,31 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
         eventActionDanhMuc = new EventActionDanhMuc() {
             @Override
             public void turnOn(Model_Danh_Muc danhMuc) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                if (showMessageBanCoMuon("Hoạt động trở lại của danh mục " + danhMuc.getTen_Danh_Muc())) {
+                    ChucNang_Panel_Danh_Muc.UpdateTrangThaiHoatDong(danhMuc.getID_Danh_Muc());
+                    fillTableData(ChucNang_Panel_Danh_Muc.getAll());
+                    
+                    if (danhMuc.getTrangThai().equals("Hoạt động")) {
+                        showMessage("Danh mục đang hoạt động.");
+                    }
+                } else {
+                    System.out.println("User click Cancel");
+                }
             }
 
             @Override
             public void shutDown(Model_Danh_Muc danhMuc) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                if (showMessageBanCoMuon("Ngưng hoạt động danh mục " + danhMuc.getTen_Danh_Muc())) {
+                    ChucNang_Panel_Danh_Muc.UpdateTrangThaiNgungHoatDong(danhMuc.getID_Danh_Muc());
+                    fillTableData(ChucNang_Panel_Danh_Muc.getAll());
+
+                    if (danhMuc.getTrangThai().equals("Ngưng hoạt động")) {
+                        showMessage("Danh mục đã ngưng hoạt động.");
+                    }
+                } else {
+                    System.out.println("User click Cancel");
+                }
+
             }
         };
     }
@@ -60,20 +68,21 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
     public void fillTableData(ArrayList<Model_Danh_Muc> dM) {
         DefaultTableModel model = (DefaultTableModel) tableDanhMuc1.getModel();
         model.setRowCount(0);
-//        for (Model_Nguoi_Ban model_Nguoi_Ban : nB) {
-//            model.addRow(new Model_Nguoi_Ban(model_Nguoi_Ban.getTen_Cua_Hang(), model_Nguoi_Ban.getID_Nguoi_Ban(), model_Nguoi_Ban.getNgay_Tham_Gia(), model_Nguoi_Ban.getTrang_Thai()).toRowTable(eventActionNguoiBan));
-//            model.addRow(new Model_Danh_Muc(new ImageIcon(getClass().getResource()), TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, SOMEBITS, TOOL_TIP_TEXT_KEY).toRowTable(eventActionNguoiBan));
-//
-//        }
-        
+
         for (Model_Danh_Muc model_Danh_Muc : dM) {
             model.addRow(new Model_Danh_Muc(model_Danh_Muc.getAnhDanhMuc(), model_Danh_Muc.getTen_Danh_Muc(), model_Danh_Muc.getID_Danh_Muc(), model_Danh_Muc.getSoLuongSanPham(), model_Danh_Muc.getTrangThai()).toRowTable((EventActionDanhMuc) eventActionDanhMuc));
 
         }
     }
 
+    private boolean showMessageBanCoMuon(String message) {
+        MessageThongBao obj = new MessageThongBao(MainAdmin.getFrames()[0], true);
+        obj.showMessage(message);
+        return obj.isOk();
+    }
+
     private boolean showMessage(String message) {
-        Message obj = new Message(Main.getFrames()[0], true);
+        Message obj = new Message(MainAdmin.getFrames()[0], true);
         obj.showMessage(message);
         return obj.isOk();
     }
@@ -130,8 +139,8 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane2)
+                .addGap(0, 0, 0))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -142,6 +151,9 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
         lbl_VutGay.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lbl_VutGay.setText("Ngưng hoạt động");
         lbl_VutGay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_VutGayMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lbl_VutGayMousePressed(evt);
             }
@@ -266,18 +278,19 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
 
     private void txt_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_TimKiemActionPerformed
         // TODO add your handling code here:
+        //Danh muc chua co tim kiem
         String maNguoiBanTimKiem = txt_TimKiem.getText();
         //fillTableData(ChucNang_Panel_Nguoi_Ban.getTimKiem(maNguoiBanTimKiem));
     }//GEN-LAST:event_txt_TimKiemActionPerformed
 
     private void lbl_TatCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_TatCaMouseClicked
         // TODO add your handling code here:
-        //fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
+        fillTableData(ChucNang_Panel_Danh_Muc.getAll());
     }//GEN-LAST:event_lbl_TatCaMouseClicked
 
     private void lbl_HoatDongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HoatDongMouseClicked
         // TODO add your handling code here:
-        //fillTableData(ChucNang_Panel_Nguoi_Ban.getAllHoatDong());
+        fillTableData(ChucNang_Panel_Danh_Muc.getAllHoatDong());
     }//GEN-LAST:event_lbl_HoatDongMouseClicked
 
     private void lbl_HoatDongMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_HoatDongMouseExited
@@ -315,6 +328,11 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
         // TODO add your handling code here:
         lbl_VutGay.setForeground(Color.red);
     }//GEN-LAST:event_lbl_VutGayMousePressed
+
+    private void lbl_VutGayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_VutGayMouseClicked
+        // TODO add your handling code here:
+        fillTableData(ChucNang_Panel_Danh_Muc.getAllNgungHoatDong());
+    }//GEN-LAST:event_lbl_VutGayMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
