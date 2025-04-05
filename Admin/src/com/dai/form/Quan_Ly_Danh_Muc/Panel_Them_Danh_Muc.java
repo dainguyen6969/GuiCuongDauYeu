@@ -153,6 +153,7 @@ public class Panel_Them_Danh_Muc extends javax.swing.JPanel {
 
     private void bttn_ThemAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_ThemAnhActionPerformed
         // TODO add your handling code here:
+        //Thieu validate them danh muc
         int width = jButton1.getWidth();
         int height = jButton1.getHeight();
 
