@@ -251,7 +251,7 @@ public class Form_ChiTiet_Duyet_Nguoi_Ban extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("Người mua");
+        jLabel1.setText("Chi tiết duyệt");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

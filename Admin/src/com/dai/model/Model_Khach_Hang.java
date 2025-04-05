@@ -125,16 +125,12 @@ public class Model_Khach_Hang {
     public Model_Khach_Hang() {
     }
 
-//    public Object[] toRowTable(EventActionNguoiMua event) {
-//
-//        return new Object[]{Ho_Ten, Ma_Khach_Hang, So_Dien_Thoai, Trang_Thai, new ModelAction(this, event)};
-//    }
     public Object[] toRowTable(EventActionNguoiMua event) {
-        if (event == null) {
-            System.out.println("Lỗi: eventNguoiMua bị null khi truyền vào ModelAction!");
-        } else {
-            System.out.println("eventNguoiMua đã được truyền thành công.");
-        }
+//        if (event == null) {
+//            System.out.println("Lỗi: eventNguoiMua bị null khi truyền vào ModelAction!");
+//        } else {
+//            System.out.println("eventNguoiMua đã được truyền thành công.");
+//        }
         return new Object[]{Ho_Ten, Ma_Khach_Hang, So_Dien_Thoai, Trang_Thai, new ModelAction(this, event)};
     }
 }

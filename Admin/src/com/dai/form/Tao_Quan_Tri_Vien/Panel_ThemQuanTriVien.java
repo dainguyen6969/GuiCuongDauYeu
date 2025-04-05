@@ -123,6 +123,7 @@ public class Panel_ThemQuanTriVien extends javax.swing.JPanel {
 
     private void bttn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_ThemActionPerformed
         // TODO add your handling code here:
+        //Thieu validate them quan tri vien
         if (txt_Password.getText().equals(txt_NhapLaiPassword.getText())) {
             ChucNang_QuanTriVien.themQuanTriVien(txt_TenAdmin.getText(), txt_TenDangNhap.getText(), txt_Password.getText());
         } else {

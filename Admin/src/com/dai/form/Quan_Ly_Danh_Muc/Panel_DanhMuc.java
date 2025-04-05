@@ -36,34 +36,31 @@ public class Panel_DanhMuc extends javax.swing.JPanel {
         eventActionDanhMuc = new EventActionDanhMuc() {
             @Override
             public void turnOn(Model_Danh_Muc danhMuc) {
-                if (danhMuc.getTrangThai().equals("Hoạt động")) {
-                    showMessage("Danh mục đang hoạt động.");
-                } else if (danhMuc.getTrangThai().equals("Ngưng hoạt động")) {
-                    if (showMessageBanCoMuon("Hoạt động trở lại của danh mục " + danhMuc.getTen_Danh_Muc())) {
-                        ChucNang_Panel_Danh_Muc.UpdateTrangThaiHoatDong(danhMuc.getID_Danh_Muc());
-                        fillTableData(ChucNang_Panel_Danh_Muc.getAll());
-                    } else {
-                        System.out.println("User click Cancel");
+                if (showMessageBanCoMuon("Hoạt động trở lại của danh mục " + danhMuc.getTen_Danh_Muc())) {
+                    ChucNang_Panel_Danh_Muc.UpdateTrangThaiHoatDong(danhMuc.getID_Danh_Muc());
+                    fillTableData(ChucNang_Panel_Danh_Muc.getAll());
+                    
+                    if (danhMuc.getTrangThai().equals("Hoạt động")) {
+                        showMessage("Danh mục đang hoạt động.");
                     }
+                } else {
+                    System.out.println("User click Cancel");
                 }
             }
-            
-            //Khi bam turn on nguoi ban ngung hoat dong thi lai hien ra thong bao ---bug
+
             @Override
             public void shutDown(Model_Danh_Muc danhMuc) {
-                ChucNang_Panel_Danh_Muc.UpdateTrangThaiNgungHoatDong(danhMuc.getID_Danh_Muc());
-                fillTableData(ChucNang_Panel_Danh_Muc.getAll());
+                if (showMessageBanCoMuon("Ngưng hoạt động danh mục " + danhMuc.getTen_Danh_Muc())) {
+                    ChucNang_Panel_Danh_Muc.UpdateTrangThaiNgungHoatDong(danhMuc.getID_Danh_Muc());
+                    fillTableData(ChucNang_Panel_Danh_Muc.getAll());
 
-                if (danhMuc.getTrangThai().equals("Ngưng hoạt động")) {
-                    showMessage("Danh mục đã ngưng hoạt động.");
-                } else if (danhMuc.getTrangThai().equals("Hoạt động")) {
-                    if (showMessageBanCoMuon("Hoạt động trở lại danh mục " + danhMuc.getTen_Danh_Muc())) {
-                        ChucNang_Panel_Danh_Muc.UpdateTrangThaiHoatDong(danhMuc.getID_Danh_Muc());
-                        fillTableData(ChucNang_Panel_Danh_Muc.getAll());
-                    } else {
-                        System.out.println("User click Cancel");
+                    if (danhMuc.getTrangThai().equals("Ngưng hoạt động")) {
+                        showMessage("Danh mục đã ngưng hoạt động.");
                     }
+                } else {
+                    System.out.println("User click Cancel");
                 }
+
             }
         };
     }

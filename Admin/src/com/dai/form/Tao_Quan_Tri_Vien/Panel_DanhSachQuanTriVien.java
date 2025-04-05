@@ -34,29 +34,31 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
             @Override
             public void hoatDong(Model_Quan_Tri_Vien quanTriVien) {
                 //Mai nhớ làm nốt sự kiện cho quản trị viên
-                if (quanTriVien.getTrangThai().equals("Hoạt động")) {
-                    showMessage("Quản trị viên đang hoạt động.");
-                } else if (quanTriVien.getTrangThai().equals("Dừng hoạt động")) {
-                    if (showMessageBanCoMuon("Hoạt động trở lại của quản trị viên " + quanTriVien.getTenAdmin())) {
-                        ChucNang_QuanTriVien.UpdateTrangThaiHoatDong(quanTriVien.getIdAdmin());
-                        fillTableData(ChucNang_QuanTriVien.getAll());
-                    } else {
-                        System.out.println("User click Cancel");
+                if (showMessageBanCoMuon("Hoạt động trở lại của quản trị viên " + quanTriVien.getTenAdmin())) {
+                    ChucNang_QuanTriVien.UpdateTrangThaiHoatDong(quanTriVien.getIdAdmin());
+                    fillTableData(ChucNang_QuanTriVien.getAll());
+
+                    if (quanTriVien.getTrangThai().equals("Hoạt động")) {
+                        showMessage("Quản trị viên đang hoạt động.");
                     }
+
+                } else {
+                    System.out.println("User click Cancel");
                 }
             }
 
             @Override
             public void dungHoatDong(Model_Quan_Tri_Vien quanTriVien) {
-                if (quanTriVien.getTrangThai().equals("Dừng hoạt động")) {
-                    showMessage("Quản trị viên đã dừng hoạt động.");
-                } else if (quanTriVien.getTrangThai().equals("Hoạt động")) {
-                    if (showMessageBanCoMuon("Dừng hoạt động quản trị viên " + quanTriVien.getTenAdmin())) {
-                        ChucNang_QuanTriVien.UpdateTrangThaiDungHoatDong(quanTriVien.getIdAdmin());
-                        fillTableData(ChucNang_QuanTriVien.getAll());
-                    } else {
-                        System.out.println("User click Cancel");
+                if (showMessageBanCoMuon("Dừng hoạt động quản trị viên " + quanTriVien.getTenAdmin())) {
+                    ChucNang_QuanTriVien.UpdateTrangThaiDungHoatDong(quanTriVien.getIdAdmin());
+                    fillTableData(ChucNang_QuanTriVien.getAll());
+                    
+                    if (quanTriVien.getTrangThai().equals("Dừng hoạt động")) {
+                        showMessage("Quản trị viên đã dừng hoạt động.");
                     }
+                    
+                } else {
+                    System.out.println("User click Cancel");
                 }
             }
         };
@@ -110,7 +112,7 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tên quản trị", "Mã quản trị", "Trạng thái", "Ngày tạo", "Thao tác"
+                "Mã quản trị", "Tên quản trị", "Trạng thái", "Ngày tạo", "Thao tác"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -329,10 +331,10 @@ public class Panel_DanhSachQuanTriVien extends javax.swing.JPanel {
 
     private void tbl_QuanTriVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_QuanTriVienMouseClicked
         // TODO add your handling code here:
-        int selected = tbl_QuanTriVien.getSelectedRow();
-        String ma_Khach_hang = tbl_QuanTriVien.getValueAt(selected, 1).toString();
-        Form_ChiTiet_KhachHang form_CT_KH = new Form_ChiTiet_KhachHang(ma_Khach_hang);
-        form_CT_KH.setVisible(true);
+//        int selected = tbl_QuanTriVien.getSelectedRow();
+//        String ma_Khach_hang = tbl_QuanTriVien.getValueAt(selected, 1).toString();
+//        Form_ChiTiet_KhachHang form_CT_KH = new Form_ChiTiet_KhachHang(ma_Khach_hang);
+//        form_CT_KH.setVisible(true);
     }//GEN-LAST:event_tbl_QuanTriVienMouseClicked
 
     private void lbl_DungHoatDongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_DungHoatDongMouseClicked

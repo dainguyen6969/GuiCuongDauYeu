@@ -34,33 +34,32 @@ public class Panel_NguoiBan extends javax.swing.JPanel {
         eventActionNguoiBan = new EventActionNguoiBan() {
             @Override
             public void banRemoved(Model_Nguoi_Ban nguoiBan) {
-                ChucNang_Panel_Nguoi_Ban.UpdateTrangThaiHoatDong(nguoiBan.getID_Nguoi_Ban());
-                fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
-                if (nguoiBan.getTrang_Thai().equals("Hoạt động")) {
-                    showMessage("Người bán đang hoạt động.");
-                } else if (nguoiBan.getTrang_Thai().equals("Banned")) {
-                    if (showMessageBanCoMuon("Gỡ gậy cho Shop " + nguoiBan.getTen_Cua_Hang())) {
-                        ChucNang_Panel_Khach_hang.UpdateTrangThaiHoatDong(nguoiBan.getID_Nguoi_Ban());
-                        fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
-                    } else {
-                        System.out.println("User click Cancel");
+                if (showMessageBanCoMuon("Gỡ gậy cho Shop " + nguoiBan.getTen_Cua_Hang())) {
+                    ChucNang_Panel_Nguoi_Ban.UpdateTrangThaiHoatDong(nguoiBan.getID_Nguoi_Ban());
+                    fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
+                    
+                    if (nguoiBan.getTrang_Thai().equals("Hoạt động")) {
+                        showMessage("Người bán đang hoạt động.");
                     }
+                    
+                } else {
+                    System.out.println("User click Cancel");
                 }
+
             }
 
             @Override
             public void ban(Model_Nguoi_Ban nguoiBan) {
-                ChucNang_Panel_Nguoi_Ban.UpdateTrangThaiVutGay(nguoiBan.getID_Nguoi_Ban());
-                fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
-                if (nguoiBan.getTrang_Thai().equals("Banned")) {
-                    showMessage("Nguời bán đang bị đánh gậy.");
-                } else if (nguoiBan.getTrang_Thai().equals("Hoạt động")) {
-                    if (showMessageBanCoMuon("Vụt gậy Shop " + nguoiBan.getTen_Cua_Hang())) {
-                        ChucNang_Panel_Nguoi_Ban.UpdateTrangThaiVutGay(nguoiBan.getID_Nguoi_Ban());
-                        fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
-                    } else {
-                        System.out.println("User click Cancel");
+                if (showMessageBanCoMuon("Vụt gậy Shop " + nguoiBan.getTen_Cua_Hang())) {
+                    ChucNang_Panel_Nguoi_Ban.UpdateTrangThaiVutGay(nguoiBan.getID_Nguoi_Ban());
+                    fillTableData(ChucNang_Panel_Nguoi_Ban.getAll());
+                    
+                    if (nguoiBan.getTrang_Thai().equals("Banned")) {
+                        showMessage("Nguời bán đang bị đánh gậy.");
                     }
+                    
+                } else {
+                    System.out.println("User click Cancel");
                 }
             }
         };

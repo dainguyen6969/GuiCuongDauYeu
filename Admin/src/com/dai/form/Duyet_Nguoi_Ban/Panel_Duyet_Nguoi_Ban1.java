@@ -32,19 +32,6 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
         evenActionDuyetNguoiBan = new EventActionDuyetNguoiBan() {
             @Override
             public void duyet(model_Duyet_Nguoi_Ban duyetNguoiBan) {
-//                ChucNang_Panel_Duyet_Nguoi_Ban.duyet_Nguoi_Ban(
-//                        duyetNguoiBan.getID_Nguoi_Mua(),
-//                        duyetNguoiBan.getTen_Shop(),
-//                        duyetNguoiBan.getDia_Chi_Lay_Hang(),
-//                        duyetNguoiBan.getSo_Dien_Thoai(),
-//                        duyetNguoiBan.getEmail(),
-//                        duyetNguoiBan.getCccd());
-//                if (showMessage("Duyệt : " + duyetNguoiBan.getTen_Shop())) {
-//                    ChucNang_Panel_Duyet_Nguoi_Ban.UpdateTrangThaiDaDuyet(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
-//                    fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAll());
-//                } else {
-//                    System.out.println("User click Cancel");
-//                }
                 if (duyetNguoiBan.getTrang_Thai().equals("Đã duyệt")) {
                     showMessage("Người mua đã được duyệt");
                 } else if (duyetNguoiBan.getTrang_Thai().equals("Hủy duyệt")) {

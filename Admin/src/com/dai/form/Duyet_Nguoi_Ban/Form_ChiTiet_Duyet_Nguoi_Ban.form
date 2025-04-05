@@ -388,7 +388,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="sansserif" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Ng&#x1b0;&#x1edd;i mua"/>
+        <Property name="text" type="java.lang.String" value="Chi ti&#x1ebf;t duy&#x1ec7;t"/>
       </Properties>
     </Component>
   </SubComponents>

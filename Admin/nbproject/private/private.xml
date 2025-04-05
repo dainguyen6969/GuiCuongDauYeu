@@ -77,7 +77,6 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/EventAction/EventActionDuyetNguoiBan.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_Danh_Muc/ChucNang_Panel_Danh_Muc.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_User/ChucNang_User/ChucNang_Panel_Khach_hang.java</file>
-            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_Danh_Muc/Panel_DanhMuc.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_User/ChucNang_User/ChucNang_Panel_Nguoi_Ban.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/model/Model_Danh_Muc.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Duyet_Nguoi_Ban/ChucNang_Panel_Duyet_Nguoi_Ban.java</file>
@@ -99,6 +98,7 @@
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/swing/table/TableCellActionDanhMuc.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/main/DangNhap.java</file>
             <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/dialog/MessageThongBao.java</file>
+            <file>file:/home/dainguyen/DATN/DATN_Java/Admin/src/com/dai/form/Quan_Ly_Danh_Muc/Panel_DanhMuc.java</file>
         </group>
     </open-files>
 </project-private>
