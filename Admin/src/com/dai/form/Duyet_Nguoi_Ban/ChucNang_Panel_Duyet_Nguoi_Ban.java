@@ -20,7 +20,7 @@ public class ChucNang_Panel_Duyet_Nguoi_Ban {
             + "FROM Duyet_Nguoi_Mua dnm INNER JOIN Người_Mua nm "
             + "ON dnm.ID_Nguoi_Mua = nm.ID_Nguoi_Mua";
 
-    static String selectduyetNguoiMua = "INSERT INTO Nguoi_Ban(ID_Nguoi_Mua, Ten_Cua_Hang, Dia_Chi, So_Dien_Thoai, Trang_Thai, Role, Email, CCCD)"
+    static String selectduyetNguoiMua = "INSERT INTO Nguoi_Ban(ID_Nguoi_Mua, Ten_Cua_Hang, Dia_Chi_Nhan_Hang, So_Dien_Thoai, Trang_Thai, Role, Email, CCCD)"
             + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
     static String readDuyetNguoiMua = "SELECT dnm.ID_Duyet_Nguoi_Mua, dnm.ID_Nguoi_Mua, dnm.Ten_Shop, nm.Email, nm.So_Dien_Thoai, dnm.Trang_Thai, dnm.Dia_Chi_Lay_Hang, dnm.CCCD, dnm.Ngay_Gui_Duyet "

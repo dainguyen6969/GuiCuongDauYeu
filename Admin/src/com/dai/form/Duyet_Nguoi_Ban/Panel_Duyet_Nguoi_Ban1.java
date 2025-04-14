@@ -47,6 +47,7 @@ public class Panel_Duyet_Nguoi_Ban1 extends javax.swing.JPanel {
                                 duyetNguoiBan.getEmail(),
                                 duyetNguoiBan.getCccd());
                         ChucNang_Panel_Duyet_Nguoi_Ban.UpdateTrangThaiDaDuyet(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
+                        ChucNang_Panel_Duyet_Nguoi_Ban.getDuyetNguoiBan(duyetNguoiBan.getID_Duyet_Nguoi_Ban());
                         fillTableData(ChucNang_Panel_Duyet_Nguoi_Ban.getAllChoXacNhan());
                         showMessageDone("Duyệt thành công.");
                     } else {
