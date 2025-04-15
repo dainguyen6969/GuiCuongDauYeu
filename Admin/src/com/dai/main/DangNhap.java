@@ -23,6 +23,7 @@ public class DangNhap extends javax.swing.JFrame {
 
     public DangNhap() {
         initComponents();
+        this.setDefaultCloseOperation(DangNhap.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }
 
@@ -135,7 +136,6 @@ public class DangNhap extends javax.swing.JFrame {
                 new MainAdmin().setVisible(true);
             } else if (checkTaiKhoan(txt_TenDangNhap.getText(), txt_MatKhau.getText(), 5, "Hoạt động")) {
                 new MainSuperAdmin().setVisible(true);
-
             } else {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thất bại.", "Thông Báo", JOptionPane.CANCEL_OPTION);
             }

@@ -96,7 +96,6 @@ public class ChucNang_Panel_Khach_hang {
                 kh.setEmail(rs.getString("Email"));
                 kh.setGioi_Tinh(rs.getString("Gioi_Tinh"));
                 kh.setNgay_Sinh(rs.getString("Ngay_Sinh"));
-                kh.setDia_Chi(rs.getString("Dia_Chi"));
                 kh.setNgay_Tao(rs.getString("Ngay_Tao"));
             }
         } catch (Exception e) {

@@ -92,7 +92,7 @@ public class ChucNang_Panel_Nguoi_Ban {
                 nb.setID_Nguoi_Mua(rs.getString("ID_Nguoi_Mua"));
                 nb.setTen_Cua_Hang(rs.getString("Ten_Cua_Hang"));
                 nb.setSo_Dien_Thoai(rs.getString("So_Dien_Thoai"));
-                nb.setDia_Chi(rs.getString("Dia_Chi"));
+                nb.setDia_Chi(rs.getString("Dia_Chi_Nhan_Hang"));
                 nb.setEmail(rs.getString("Email"));
                 nb.setNgay_Tham_Gia(rs.getString("Ngay_Tham_Gia"));
                 nb.setTrang_Thai(rs.getString("Trang_Thai"));
